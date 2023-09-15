@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,11 +24,12 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username);
+        List<String> roles = user.getUserRoles()
+                .stream().map(UserRole::getRole)
+                .map(Role::getName).toList();
         return org.springframework.security.core.userdetails.User.withUsername(username)
                 .password(user.getPassword())
-                .roles(String.valueOf(user.getUserRoles()
-                        .stream().map(UserRole::getRole)
-                        .map(Role::getName).collect(Collectors.toList())))
+                .roles(roles.toArray(new String[roles.size()]))
                 .build();
     }
 }
