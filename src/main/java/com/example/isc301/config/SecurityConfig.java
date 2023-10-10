@@ -1,32 +1,28 @@
 package com.example.isc301.config;
 
+import com.example.isc301.constants.RequestMappingConstant;
 import com.example.isc301.service.UserDetailServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    @Autowired
+    private FilterExceptionHandler filterExceptionHandler;
 
-    @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }
+    @Autowired
+    private JWTAuthFilter jwtAuthFilter;
+
+    @Autowired
+    private UsernamePasswordAuthFilter usernamePasswordAuthFilter;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -36,14 +32,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests().requestMatchers(HttpMethod.GET, "/login", "/logout", "/css/**", "/js/**", "/plugins/**", "/img/**").permitAll()
-                .anyRequest().authenticated()
+                .cors().and().csrf().disable()
+                .addFilterBefore(usernamePasswordAuthFilter, BasicAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthFilter.class)
+                .addFilterBefore(filterExceptionHandler, JWTAuthFilter.class)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .formLogin()
-                .permitAll()
-                .defaultSuccessUrl("/")
-                .and()
-                .cors().and().csrf().disable();
+                .authorizeHttpRequests(request -> {
+                    request.requestMatchers(HttpMethod.POST, RequestMappingConstant.SIGN_IN_API, RequestMappingConstant.SIGN_UP_API, RequestMappingConstant.SIGN_OUT_API).permitAll()
+                            .anyRequest().authenticated();
+//                    request.requestMatchers(HttpMethod.GET, RequestMappingConstant.ME_API).permitAll()
+//                            .anyRequest().authenticated();
+
+                });
         return http.build();
     }
 }
