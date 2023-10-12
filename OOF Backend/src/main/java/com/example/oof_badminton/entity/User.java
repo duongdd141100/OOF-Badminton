@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Data
 public class User extends BaseEntity {
 
@@ -17,7 +17,7 @@ public class User extends BaseEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "name")
+    @Column(name = "fullname")
     private String name;
 
     @Column(name = "gender")
@@ -35,7 +35,8 @@ public class User extends BaseEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UserRole> userRoles;
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 }

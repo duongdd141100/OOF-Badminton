@@ -7,11 +7,13 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "roles")
-public class Role extends BaseEntity{
+@Table(name = "suppliers")
+public class Supplier extends BaseEntity {
+
     @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "role", fetch = FetchType.LAZY)
-    private User user;
+    @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY)
+    private List<Product> products;
+
 }

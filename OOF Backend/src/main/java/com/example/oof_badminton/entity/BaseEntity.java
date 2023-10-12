@@ -2,12 +2,16 @@ package com.example.oof_badminton.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
 @Data
+@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,12 +19,14 @@ public class BaseEntity implements Serializable {
     private Float id;
 
     @Column(name = "created_date")
+    @CreatedDate
     private Date createdDate;
 
     @Column(name = "created_by")
     private Date createdBy;
 
     @Column(name = "updated_date")
+    @LastModifiedDate
     private Date updatedDate;
 
     @Column(name = "updated_by")
