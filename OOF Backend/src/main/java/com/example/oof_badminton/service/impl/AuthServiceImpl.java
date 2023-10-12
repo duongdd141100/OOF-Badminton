@@ -60,7 +60,7 @@ public class AuthServiceImpl implements AuthService {
             boolean isExist = true;
             while (isExist) {
                 Random random = new Random();
-                String email = username.toString() + random.nextInt(100) + Constants.PREFIX;
+                String email = username.toString() + random.nextInt(100) + "";
                 isExist = userRepo.findByUsername(email) != null;
                 if (!isExist) {
                     user.setEmail(email);
