@@ -2,7 +2,6 @@ package com.example.oof_badminton.service.impl;
 
 import com.example.oof_badminton.common.Converter;
 import com.example.oof_badminton.common.ErrorMessageEnum;
-import com.example.oof_badminton.constants.Constants;
 import com.example.oof_badminton.entity.User;
 import com.example.oof_badminton.repository.UserRepository;
 import com.example.oof_badminton.service.AuthService;
@@ -37,22 +36,23 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public User findByEmail(String email) {
-        if (StringUtils.hasText(email)) {
-            return userRepo.findByUsername(email);
+    public User findByUsername(String username) {
+        if (StringUtils.hasText(username)) {
+            return userRepo.findByUsername(username);
         }
         throw new RuntimeException(ErrorMessageEnum.TOKEN_INVALID.getCode());
     }
 
     @Override
     public User save(User user) {
-        if (Arrays.asList(user.getName(),
+        if (Arrays.asList(user.getFullname(),
                 user.getPassword(),
                 user.getPhoneNumber(),
-                "user.getRoles()").stream().allMatch(StringUtils::hasText)
+                user.getEmail()).stream().allMatch(StringUtils::hasText)
                 && user.getGender() != null
-                && user.getDob() != null) {
-            List<String> names = Arrays.asList(Converter.removeAccent(user.getName().trim().toLowerCase()).split(" "));
+                && user.getDob() != null
+                && user.getRole().getId() != null) {
+            List<String> names = Arrays.asList(Converter.removeAccent(user.getFullname().trim().toLowerCase()).split(" "));
             StringBuilder username = new StringBuilder(names.get(names.size() - 1));
             for (int i = 0; i < names.size() - 1; i++) {
                 username.append(names.get(i).charAt(0));
@@ -60,10 +60,10 @@ public class AuthServiceImpl implements AuthService {
             boolean isExist = true;
             while (isExist) {
                 Random random = new Random();
-                String email = username.toString() + random.nextInt(100) + "";
-                isExist = userRepo.findByUsername(email) != null;
+                String usernameEnd = username.append(random.nextInt(100)).toString();
+                isExist = userRepo.findByUsername(usernameEnd) != null;
                 if (!isExist) {
-                    user.setEmail(email);
+                    user.setUsername(usernameEnd);
                 }
             }
             user.setPassword(passwordEncoder.encode(user.getPassword()));

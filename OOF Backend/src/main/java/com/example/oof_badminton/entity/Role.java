@@ -12,6 +12,6 @@ public class Role extends BaseEntity{
     @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "role", fetch = FetchType.LAZY)
-    private User user;
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    private List<User> users;
 }

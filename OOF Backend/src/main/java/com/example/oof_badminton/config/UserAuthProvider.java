@@ -31,15 +31,15 @@ public class UserAuthProvider {
     public Authentication validateToken(String token) {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secretKey)).build();
         DecodedJWT decodedJWT = verifier.verify(token);
-        return new UsernamePasswordAuthenticationToken(authService.findByEmail(decodedJWT.getIssuer()), null, Collections.emptyList());
+        return new UsernamePasswordAuthenticationToken(authService.findByUsername(decodedJWT.getIssuer()), null, Collections.emptyList());
     }
 
-    public String createToken(String email) {
+    public String createToken(String username) {
         try {
             Date now = new Date();
             Date expiry = new Date(now.getTime() + Constants.TOKEN_EXPIRE_MILLISECONDS);
             return JWT.create()
-                    .withIssuer(email)
+                    .withIssuer(username)
                     .withIssuedAt(now)
                     .withExpiresAt(expiry)
                     .sign(Algorithm.HMAC256(secretKey));

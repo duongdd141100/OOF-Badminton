@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -18,7 +17,7 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(name = "fullname")
-    private String name;
+    private String fullname;
 
     @Column(name = "gender")
     private Boolean gender;
@@ -35,7 +34,7 @@ public class User extends BaseEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 

@@ -10,10 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -28,13 +27,24 @@ public class AuthenticationController {
 
     @GetMapping("/me")
     public ResponseEntity<BaseResponse<String>> me(@AuthenticationPrincipal User user) {
-        return ResponseEntity.ok(BaseResponse.ok(user.getUsername()));
+        user.getRole().setUsers(new ArrayList<>());
+        return ResponseEntity.ok(BaseResponse.ok(user));
     }
 
     @PostMapping("/sign-in")
     public ResponseEntity<BaseResponse<String>> signIn(@AuthenticationPrincipal User user) {
         try {
-            return ResponseEntity.ok(BaseResponse.ok(userAuthProvider.createToken(user.getEmail())));
+            return ResponseEntity.ok(BaseResponse.ok(userAuthProvider.createToken(user.getUsername())));
+        } catch (Exception e) {
+            log.error(RequestMappingConstant.SIGN_IN_API + e);
+            return ResponseEntity.badRequest().body(BaseResponse.fail(ErrorMessageEnum.typeOf(e.getMessage()).getMessage()));
+        }
+    }
+
+    @PostMapping("/sign-up")
+    public ResponseEntity<BaseResponse<String>> signUp(@RequestBody User user) {
+        try {
+            return ResponseEntity.ok(BaseResponse.ok(authService.save(user)));
         } catch (Exception e) {
             log.error(RequestMappingConstant.SIGN_IN_API + e);
             return ResponseEntity.badRequest().body(BaseResponse.fail(ErrorMessageEnum.typeOf(e.getMessage()).getMessage()));
