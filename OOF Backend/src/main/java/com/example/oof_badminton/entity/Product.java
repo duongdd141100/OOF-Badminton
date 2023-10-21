@@ -19,9 +19,6 @@ public class Product extends BaseEntity{
     @Column(name = "description")
     private String description;
 
-    @Column(name = "size")
-    private String size;
-
     @Column(name = "status")
     private Double status;
 
@@ -32,5 +29,8 @@ public class Product extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<ProductSize> productSizes;
 
 }
