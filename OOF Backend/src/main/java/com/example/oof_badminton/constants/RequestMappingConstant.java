@@ -13,7 +13,7 @@ public class RequestMappingConstant {
     public static final String ME_API = "/api/auth/me";
 
     public static final String FIND_ALL_EMPLOYEE_API = "/api/employees";
-    public static final String FIND_ALL_PRODUCT_API = "/api/products/";
+    public static final String FIND_ALL_PRODUCT_API = "/api/products";
 
     public static final List<String> FREE_API = Arrays.asList(
             SIGN_IN_API,
