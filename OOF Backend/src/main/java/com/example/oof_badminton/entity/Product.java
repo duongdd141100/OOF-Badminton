@@ -8,6 +8,21 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "products")
+@SqlResultSetMapping(
+        name = "ProductDto",
+        classes = @ConstructorResult(
+                targetClass = com.example.oof_badminton.dto.ProductDto.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Integer.class),
+                        @ColumnResult(name = "productName", type = String.class),
+                        @ColumnResult(name = "price", type = Float.class),
+                        @ColumnResult(name = "status", type = String.class),
+                        @ColumnResult(name = "description", type = String.class),
+                        @ColumnResult(name = "categoryName", type = String.class),
+                        @ColumnResult(name = "supplierName", type = String.class)
+                }
+        )
+)
 public class Product extends BaseEntity{
 
     @Column(name = "name")

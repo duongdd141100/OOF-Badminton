@@ -32,7 +32,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
                 throw new RuntimeException(ErrorMessageEnum.TOKEN_INVALID.getCode());
             }
         } else {
-            if (!Arrays.asList(RequestMappingConstant.SIGN_IN_API, RequestMappingConstant.SIGN_UP_API, RequestMappingConstant.SIGN_OUT_API).contains(request.getServletPath())) {
+            if (!RequestMappingConstant.FREE_API.contains(request.getServletPath())) {
                 throw new RuntimeException(ErrorMessageEnum.TOKEN_INVALID.getCode());
             }
         }
