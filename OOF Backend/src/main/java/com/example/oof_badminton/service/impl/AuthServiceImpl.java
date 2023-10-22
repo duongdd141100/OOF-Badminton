@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.nio.CharBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -29,6 +30,7 @@ public class AuthServiceImpl implements AuthService {
         if (user != null && StringUtils.hasText(user.getUsername())) {
             User realUser = userRepo.findByUsername(user.getUsername());
             if (passwordEncoder.matches(CharBuffer.wrap(user.getPassword()), realUser.getPassword())) {
+                realUser.getRole().setUsers(new ArrayList<>());
                 return realUser;
             }
         }
