@@ -15,7 +15,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductCustomRepository productCustomRepo;
 
     @Override
-    public List<Product> findAll(Integer categoryId, Integer supplierId) {
-        return productCustomRepo.findAll(categoryId, supplierId);
+    public List<Product> findAll(Integer categoryId, Integer supplierId, String searchText, Float minPrice, Float maxPrice) {
+        return productCustomRepo.findAll(categoryId, supplierId, searchText, minPrice, maxPrice);
     }
 }

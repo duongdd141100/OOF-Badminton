@@ -24,10 +24,13 @@ public class ProductController {
     @GetMapping("")
     public ResponseEntity<BaseResponse<List<Product>>> getProduct(
             @RequestParam(name = "categoryId", required = false) Integer categoryId,
-            @RequestParam(name = "supplierId", required = false) Integer supplierId
+            @RequestParam(name = "supplierId", required = false) Integer supplierId,
+            @RequestParam(name = "searchText", required = false) String searchText,
+            @RequestParam(name = "minPrice", required = false) Float minPrice,
+            @RequestParam(name = "maxPrice", required = false) Float maxPrice
     ) {
         try {
-            return ResponseEntity.ok(BaseResponse.ok(productService.findAll(categoryId, supplierId)));
+            return ResponseEntity.ok(BaseResponse.ok(productService.findAll(categoryId, supplierId, searchText, minPrice, maxPrice)));
         } catch (Exception e) {
             log.error("Get product: " + e);
             return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));

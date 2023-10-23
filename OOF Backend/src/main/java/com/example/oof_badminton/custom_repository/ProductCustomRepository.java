@@ -28,8 +28,8 @@ public class ProductCustomRepository {
             " inner join suppliers s" +
             " on p.supplier_id = s.id";
 
-    public List<Product> findAll(Integer categoryId, Integer supplierId) {
-        String conditionQuery = createCondition(categoryId, supplierId);
+    public List<Product> findAll(Integer categoryId, Integer supplierId, String searchText, Float minPrice, Float maxPrice) {
+        String conditionQuery = createCondition(categoryId, supplierId, searchText, minPrice, maxPrice);
         Query query = entityManager.createNativeQuery(SQL_QUERY + conditionQuery, "ProductDto");
         if (categoryId != null) {
             query.setParameter("categoryId", categoryId);
@@ -37,16 +37,37 @@ public class ProductCustomRepository {
         if (supplierId != null) {
             query.setParameter("supplierId", supplierId);
         }
+        if (StringUtils.hasText(searchText)) {
+            searchText = "%" + searchText + "%";
+            query.setParameter("searchText", searchText);
+        }
+        if (minPrice != null) {
+            query.setParameter("minPrice", minPrice);
+        }
+        if (maxPrice != null) {
+            query.setParameter("maxPrice", maxPrice);
+        }
         return query.getResultList();
     }
 
-    private String createCondition(Integer categoryId, Integer supplierId) {
+    private String createCondition(Integer categoryId, Integer supplierId, String searchText, Float minPrice, Float maxPrice) {
         String conditionQuery = "";
         if (categoryId != null) {
             conditionQuery += " and c.id = :categoryId";
         }
         if (supplierId != null) {
             conditionQuery += " and s.id = :supplierId";
+        }
+        if (StringUtils.hasText(searchText)) {
+            conditionQuery += " and (p.name like :searchText" +
+                    " or c.name like :searchText" +
+                    " or s.name like :searchText)";
+        }
+        if (minPrice != null) {
+            conditionQuery += " and p.price >= :minPrice";
+        }
+        if (maxPrice != null) {
+            conditionQuery += " and p.price <= :maxPrice";
         }
         return StringUtils.hasText(conditionQuery)
                 ? " where" + conditionQuery.substring(4)
