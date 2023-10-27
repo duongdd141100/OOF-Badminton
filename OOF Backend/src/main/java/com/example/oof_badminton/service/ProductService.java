@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ProductService {
     List<Product> findAll(Integer categoryId, Integer supplierId, String searchText, Float minPrice, Float maxPrice);
+
+    Product findById(Float productId);
 }

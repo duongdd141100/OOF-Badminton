@@ -6,10 +6,7 @@ import com.example.oof_badminton.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +30,16 @@ public class ProductController {
             return ResponseEntity.ok(BaseResponse.ok(productService.findAll(categoryId, supplierId, searchText, minPrice, maxPrice)));
         } catch (Exception e) {
             log.error("Get product: " + e);
+            return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));
+        }
+    }
+
+    @GetMapping("/{productId}")
+    public ResponseEntity<BaseResponse<Product>> productDetail(@PathVariable Float productId) {
+        try {
+            return ResponseEntity.ok(BaseResponse.ok(productService.findById(productId)));
+        } catch (Exception e) {
+            log.error("Get product detail: " + e);
             return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));
         }
     }
