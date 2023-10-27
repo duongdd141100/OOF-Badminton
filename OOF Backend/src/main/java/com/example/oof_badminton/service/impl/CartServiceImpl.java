@@ -9,6 +9,10 @@ import com.example.oof_badminton.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CartServiceImpl implements CartService {
 
@@ -33,5 +37,17 @@ public class CartServiceImpl implements CartService {
             cartRepo.save(cart);
             return cart;
         }
+    }
+
+    @Override
+    public List<Cart> getCart(User user) {
+        return cartRepo.findByUser(user).stream().map(x -> {
+            x.setUser(null);
+            x.getProductSize().getProduct().setProductSizes(new ArrayList<>());
+            x.getProductSize().getProduct().setCategory(null);
+            x.getProductSize().getProduct().getSupplier().setProducts(new ArrayList<>());
+            x.getProductSize().setCarts(new ArrayList<>());
+            return x;
+        }).collect(Collectors.toList());
     }
 }
