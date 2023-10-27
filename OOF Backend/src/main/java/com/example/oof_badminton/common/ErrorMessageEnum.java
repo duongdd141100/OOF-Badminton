@@ -12,7 +12,9 @@ public enum ErrorMessageEnum {
 
     CREATE_TOKEN_FAILED("001004", "Create Token Failed"),
 
-    LACK_OF_INFORMATION("001005", "Lack Of Information");
+    LACK_OF_INFORMATION("001005", "Lack Of Information"),
+
+    TOO_BIG_QUANTITY("CART_0001", "Số lượng quá lớn");
 
     private String code;
 
