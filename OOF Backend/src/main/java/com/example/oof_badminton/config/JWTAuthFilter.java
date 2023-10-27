@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 @Component
 public class JWTAuthFilter extends OncePerRequestFilter {
@@ -32,7 +31,15 @@ public class JWTAuthFilter extends OncePerRequestFilter {
                 throw new RuntimeException(ErrorMessageEnum.TOKEN_INVALID.getCode());
             }
         } else {
-            if (!RequestMappingConstant.FREE_API.contains(request.getServletPath())) {
+            if (!RequestMappingConstant.FREE_API.stream().anyMatch(x -> {
+                if (x.equals(request.getServletPath())) {
+                    return true;
+                }
+                if (x.endsWith("/**") && request.getServletPath().startsWith(x.substring(0, x.indexOf("/**")))) {
+                    return true;
+                }
+                return false;
+            })) {
                 throw new RuntimeException(ErrorMessageEnum.TOKEN_INVALID.getCode());
             }
         }

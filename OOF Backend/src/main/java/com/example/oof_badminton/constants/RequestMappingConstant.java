@@ -15,10 +15,13 @@ public class RequestMappingConstant {
     public static final String FIND_ALL_EMPLOYEE_API = "/api/employees";
     public static final String FIND_ALL_PRODUCT_API = "/api/products";
 
+    public static final String PRODUCT_DETAIL_API = "/api/products/**";
+
     public static final List<String> FREE_API = Arrays.asList(
             SIGN_IN_API,
             SIGN_UP_API,
             SIGN_OUT_API,
-            FIND_ALL_PRODUCT_API);
+            FIND_ALL_PRODUCT_API,
+            PRODUCT_DETAIL_API);
 
 }
