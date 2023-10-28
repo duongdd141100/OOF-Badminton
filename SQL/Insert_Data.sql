@@ -1,0 +1,125 @@
+-- MySQL dump 10.13  Distrib 8.0.25, for macos11 (x86_64)
+--
+-- Host: 127.0.0.1    Database: oof_badminton
+-- ------------------------------------------------------
+-- Server version	8.0.33
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `carts`
+--
+
+LOCK TABLES `carts` WRITE;
+/*!40000 ALTER TABLE `carts` DISABLE KEYS */;
+INSERT INTO `carts` VALUES (1,1,1,20,NULL,'2023-10-27 14:50:52.533000',NULL,'2023-10-27 14:53:37.708000'),(2,2,1,10,NULL,'2023-10-27 14:54:09.535000',NULL,'2023-10-27 14:55:55.670000'),(3,3,1,5,NULL,'2023-10-27 14:56:12.490000',NULL,'2023-10-27 14:56:12.490000'),(4,12,1,5,NULL,'2023-10-27 17:29:06.017000',NULL,'2023-10-27 17:29:06.017000');
+/*!40000 ALTER TABLE `carts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Vợt cầu lông',NULL,NULL,NULL,NULL),(2,'Giày cầu lông',NULL,NULL,NULL,NULL),(3,'Áo cầu lông',NULL,NULL,NULL,NULL),(4,'Quần cầu lông',NULL,NULL,NULL,NULL),(5,'Tất cầu lông',NULL,NULL,NULL,NULL),(6,'Bao vợt',NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `order_product`
+--
+
+LOCK TABLES `order_product` WRITE;
+/*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `product_size`
+--
+
+LOCK TABLES `product_size` WRITE;
+/*!40000 ALTER TABLE `product_size` DISABLE KEYS */;
+INSERT INTO `product_size` VALUES (1,14,1,NULL,NULL,NULL,NULL,NULL),(2,11,2,NULL,NULL,NULL,NULL,NULL),(3,10,3,NULL,NULL,NULL,NULL,NULL),(4,26,4,NULL,NULL,NULL,NULL,NULL),(5,14,5,NULL,NULL,NULL,NULL,NULL),(6,14,6,NULL,NULL,NULL,NULL,NULL),(7,12,7,NULL,NULL,NULL,NULL,NULL),(8,11,8,NULL,NULL,NULL,NULL,NULL),(9,8,9,NULL,NULL,NULL,NULL,NULL),(10,5,10,NULL,NULL,NULL,NULL,NULL),(11,5,11,NULL,NULL,NULL,NULL,NULL),(12,7,12,20,NULL,NULL,NULL,NULL),(13,4,13,NULL,NULL,NULL,NULL,NULL),(14,6,14,NULL,NULL,NULL,NULL,NULL),(15,6,15,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `product_size` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'Astrox 88D Pro',3850000,1,'/api/image/1_Astrox 88D Pro.png',NULL,1,1,NULL,NULL,NULL,NULL),(2,'Astrox 88D Game',2850000,1,'/api/image/2_Astrox 88D Game.png',NULL,1,1,NULL,NULL,NULL,NULL),(3,'Astrox 100zz',4150000,1,'/api/image/3_Astrox 100zz.png',NULL,1,1,NULL,NULL,NULL,NULL),(4,'Astrox 77 Pro',3750000,1,'/api/image/4_Astrox 77 Pro.png',NULL,1,1,NULL,NULL,NULL,NULL),(5,'Astrox 77 xanh chuối',3250000,1,'/api/image/5_Astrox 77 xanh chuối.png',NULL,1,1,NULL,NULL,NULL,NULL),(6,'Halbertec 8000',3700000,1,'/api/image/6_Halbertec 8000.png',NULL,1,2,NULL,NULL,NULL,NULL),(7,'Lining Bladex 600',3750000,1,'/api/image/7_Lining Bladex 600.png',NULL,1,2,NULL,NULL,NULL,NULL),(8,'Victor Ryuga II',3700000,1,'/api/image/8_Victor Ryuga II.png',NULL,1,3,NULL,NULL,NULL,NULL),(9,'TK-Rabbit',800000,1,'/api/image/9_TK-Rabbit.png',NULL,1,3,NULL,NULL,NULL,NULL),(10,'Mizuno Speedflex 9.3',2680000,1,'/api/image/10_Astrox 88D GameMizuno Speedflex 9.3.png',NULL,1,4,NULL,NULL,NULL,NULL),(11,'65Z3 C-90 Wide',2650000,1,'/api/image/11_65Z3 C-90 Wide.png',NULL,2,1,NULL,NULL,NULL,NULL),(12,'65Z3 Kurenai',2950000,1,'/api/image/12_65Z3 Kurenai.png',NULL,2,1,NULL,NULL,NULL,NULL),(13,'SC6 Lindan',2550000,1,'/api/image/13_SC6 Lindan.png',NULL,2,1,NULL,NULL,NULL,NULL),(14,'Eclipsion Z3 Men - Xanh Navy',2600000,1,'/api/image/14_Eclipsion Z3 Men - Xanh Navy.png',NULL,2,1,NULL,NULL,NULL,NULL),(15,'AYTT003-3',1400000,1,'/api/image/15_AYTT003-3.png',NULL,2,2,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'ADMIN',NULL,NULL,NULL,NULL),(2,'CUSTOMER',NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `sizes`
+--
+
+LOCK TABLES `sizes` WRITE;
+/*!40000 ALTER TABLE `sizes` DISABLE KEYS */;
+INSERT INTO `sizes` VALUES (1,'36',_binary '',NULL,NULL,NULL,NULL),(2,'L',_binary '',NULL,NULL,NULL,NULL),(3,'L',_binary '\0',NULL,NULL,NULL,NULL),(4,'M',_binary '',NULL,NULL,NULL,NULL),(5,'M',_binary '\0',NULL,NULL,NULL,NULL),(6,'S',_binary '',NULL,NULL,NULL,NULL),(7,'S',_binary '\0',NULL,NULL,NULL,NULL),(8,'37',_binary '',NULL,NULL,NULL,NULL),(9,'38',_binary '',NULL,NULL,NULL,NULL),(10,'39',_binary '',NULL,NULL,NULL,NULL),(11,'40',_binary '',NULL,NULL,NULL,NULL),(12,'41',_binary '',NULL,NULL,NULL,NULL),(13,'42',_binary '',NULL,NULL,NULL,NULL),(14,'43',_binary '',NULL,NULL,NULL,NULL),(15,'36',_binary '\0',NULL,NULL,NULL,NULL),(16,'37',_binary '\0',NULL,NULL,NULL,NULL),(17,'38',_binary '\0',NULL,NULL,NULL,NULL),(18,'39',_binary '\0',NULL,NULL,NULL,NULL),(19,'40',_binary '\0',NULL,NULL,NULL,NULL),(20,'41',_binary '\0',NULL,NULL,NULL,NULL),(21,'42',_binary '\0',NULL,NULL,NULL,NULL),(22,'43',_binary '\0',NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `sizes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+LOCK TABLES `suppliers` WRITE;
+/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
+INSERT INTO `suppliers` VALUES (1,'Yonex',NULL,NULL,NULL,NULL),(2,'Lining',NULL,NULL,NULL,NULL),(3,'Victor',NULL,NULL,NULL,NULL),(4,'Mizuno',NULL,NULL,NULL,NULL),(5,'Kumpoo',NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'user1','User 1',_binary '','2000-11-14 07:00:00.000000',NULL,'user1@gmail.com','0999999999','$2a$10$nQ2eLYKGXftfvtKEa9df3.eaY5aRBbC8uX8rfDOxUMKtu6ysRP6C2',2,NULL,'2023-10-17 10:04:40.336000',NULL,'2023-10-17 10:04:40.336000'),(2,'admin1','Admin 1',_binary '','2000-11-14 07:00:00.000000',NULL,'admin1@gmail.com','0888888888','$2a$10$nQ2eLYKGXftfvtKEa9df3.eaY5aRBbC8uX8rfDOxUMKtu6ysRP6C2',1,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-10-28 10:13:34

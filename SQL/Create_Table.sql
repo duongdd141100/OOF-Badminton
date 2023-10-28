@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `carts`
+--
+
+DROP TABLE IF EXISTS `carts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `carts` (
+  `id` float NOT NULL AUTO_INCREMENT,
+  `product_size_id` float DEFAULT NULL,
+  `user_id` float DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `created_by` datetime(6) DEFAULT NULL,
+  `created_date` datetime(6) DEFAULT NULL,
+  `updated_by` datetime(6) DEFAULT NULL,
+  `updated_date` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKgfpqcna50gld717nte7kvao3u` (`product_size_id`),
+  KEY `FKb5o626f86h46m4s7ms6ginnop` (`user_id`),
+  CONSTRAINT `FKb5o626f86h46m4s7ms6ginnop` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FKgfpqcna50gld717nte7kvao3u` FOREIGN KEY (`product_size_id`) REFERENCES `product_size` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `categories`
 --
 
@@ -32,16 +56,6 @@ CREATE TABLE `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `categories`
---
-
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'Vợt cầu lông',NULL,NULL,NULL,NULL),(2,'Giày cầu lông',NULL,NULL,NULL,NULL),(3,'Áo cầu lông',NULL,NULL,NULL,NULL),(4,'Quần cầu lông',NULL,NULL,NULL,NULL),(5,'Tất cầu lông',NULL,NULL,NULL,NULL),(6,'Bao vợt',NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `order_product`
@@ -70,15 +84,6 @@ CREATE TABLE `order_product` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order_product`
---
-
-LOCK TABLES `order_product` WRITE;
-/*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `orders`
 --
 
@@ -98,15 +103,6 @@ CREATE TABLE `orders` (
   CONSTRAINT `FK32ql8ubntj5uh44ph9659tiih` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders`
---
-
-LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `product_size`
@@ -133,16 +129,6 @@ CREATE TABLE `product_size` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `product_size`
---
-
-LOCK TABLES `product_size` WRITE;
-/*!40000 ALTER TABLE `product_size` DISABLE KEYS */;
-INSERT INTO `product_size` VALUES (1,14,1,NULL,NULL,NULL,NULL,NULL),(2,11,2,NULL,NULL,NULL,NULL,NULL),(3,10,3,NULL,NULL,NULL,NULL,NULL),(4,26,4,NULL,NULL,NULL,NULL,NULL),(5,14,5,NULL,NULL,NULL,NULL,NULL),(6,14,6,NULL,NULL,NULL,NULL,NULL),(7,12,7,NULL,NULL,NULL,NULL,NULL),(8,11,8,NULL,NULL,NULL,NULL,NULL),(9,8,9,NULL,NULL,NULL,NULL,NULL),(10,5,10,NULL,NULL,NULL,NULL,NULL),(11,5,11,NULL,NULL,NULL,NULL,NULL),(12,7,12,NULL,NULL,NULL,NULL,NULL),(13,4,13,NULL,NULL,NULL,NULL,NULL),(14,6,14,NULL,NULL,NULL,NULL,NULL),(15,6,15,NULL,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `product_size` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `products`
 --
 
@@ -154,6 +140,7 @@ CREATE TABLE `products` (
   `name` varchar(255) DEFAULT NULL,
   `price` float DEFAULT NULL,
   `status` double DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `category_id` float DEFAULT NULL,
   `supplier_id` float DEFAULT NULL,
@@ -168,16 +155,6 @@ CREATE TABLE `products` (
   CONSTRAINT `FKog2rp4qthbtt2lfyhfo32lsw9` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products`
---
-
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Astrox 88D Pro',3850000,1,NULL,1,1,NULL,NULL,NULL,NULL),(2,'Astrox 88D Game',2850000,1,NULL,1,1,NULL,NULL,NULL,NULL),(3,'Astrox 100zz',4150000,1,NULL,1,1,NULL,NULL,NULL,NULL),(4,'Astrox 77 Pro',3750000,1,NULL,1,1,NULL,NULL,NULL,NULL),(5,'Astrox 77 xanh chuối',3250000,1,NULL,1,1,NULL,NULL,NULL,NULL),(6,'Halbertec 8000',3700000,1,NULL,1,2,NULL,NULL,NULL,NULL),(7,'Lining Bladex 600',3750000,1,NULL,1,2,NULL,NULL,NULL,NULL),(8,'Victor Ryuga II',3700000,1,NULL,1,3,NULL,NULL,NULL,NULL),(9,'TK-Rabbit',800000,1,NULL,1,3,NULL,NULL,NULL,NULL),(10,'Mizuno Speedflex 9.3',2680000,1,NULL,1,4,NULL,NULL,NULL,NULL),(11,'65Z3 C-90 Wide',2650000,1,NULL,2,1,NULL,NULL,NULL,NULL),(12,'65Z3 Kurenai',2950000,1,NULL,2,1,NULL,NULL,NULL,NULL),(13,'SC6 Lindan',2550000,1,NULL,2,1,NULL,NULL,NULL,NULL),(14,'Eclipsion Z3 Men - Xanh Navy',2600000,1,NULL,2,1,NULL,NULL,NULL,NULL),(15,'AYTT003-3',1400000,1,NULL,2,2,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `roles`
@@ -196,16 +173,6 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `roles`
---
-
-LOCK TABLES `roles` WRITE;
-/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'ADMIN',NULL,NULL,NULL,NULL),(2,'CUSTOMER',NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `sizes`
@@ -227,16 +194,6 @@ CREATE TABLE `sizes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sizes`
---
-
-LOCK TABLES `sizes` WRITE;
-/*!40000 ALTER TABLE `sizes` DISABLE KEYS */;
-INSERT INTO `sizes` VALUES (1,'36',_binary '',NULL,NULL,NULL,NULL),(2,'L',_binary '',NULL,NULL,NULL,NULL),(3,'L',_binary '\0',NULL,NULL,NULL,NULL),(4,'M',_binary '',NULL,NULL,NULL,NULL),(5,'M',_binary '\0',NULL,NULL,NULL,NULL),(6,'S',_binary '',NULL,NULL,NULL,NULL),(7,'S',_binary '\0',NULL,NULL,NULL,NULL),(8,'37',_binary '',NULL,NULL,NULL,NULL),(9,'38',_binary '',NULL,NULL,NULL,NULL),(10,'39',_binary '',NULL,NULL,NULL,NULL),(11,'40',_binary '',NULL,NULL,NULL,NULL),(12,'41',_binary '',NULL,NULL,NULL,NULL),(13,'42',_binary '',NULL,NULL,NULL,NULL),(14,'43',_binary '',NULL,NULL,NULL,NULL),(15,'36',_binary '\0',NULL,NULL,NULL,NULL),(16,'37',_binary '\0',NULL,NULL,NULL,NULL),(17,'38',_binary '\0',NULL,NULL,NULL,NULL),(18,'39',_binary '\0',NULL,NULL,NULL,NULL),(19,'40',_binary '\0',NULL,NULL,NULL,NULL),(20,'41',_binary '\0',NULL,NULL,NULL,NULL),(21,'42',_binary '\0',NULL,NULL,NULL,NULL),(22,'43',_binary '\0',NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `sizes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `suppliers`
 --
 
@@ -253,16 +210,6 @@ CREATE TABLE `suppliers` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `suppliers`
---
-
-LOCK TABLES `suppliers` WRITE;
-/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
-INSERT INTO `suppliers` VALUES (1,'Yonex',NULL,NULL,NULL,NULL),(2,'Lining',NULL,NULL,NULL,NULL),(3,'Victor',NULL,NULL,NULL,NULL),(4,'Mizuno',NULL,NULL,NULL,NULL),(5,'Kumpoo',NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -291,16 +238,6 @@ CREATE TABLE `users` (
   CONSTRAINT `FKp56c1712k691lhsyewcssf40f` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1','User 1',_binary '','2000-11-14 07:00:00.000000',NULL,'user1@gmail.com','0999999999','$2a$10$nQ2eLYKGXftfvtKEa9df3.eaY5aRBbC8uX8rfDOxUMKtu6ysRP6C2',2,NULL,'2023-10-17 10:04:40.336000',NULL,'2023-10-17 10:04:40.336000'),(2,'admin1','Admin 1',_binary '','2000-11-14 07:00:00.000000',NULL,'admin1@gmail.com','0888888888','$2a$10$nQ2eLYKGXftfvtKEa9df3.eaY5aRBbC8uX8rfDOxUMKtu6ysRP6C2',1,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -311,4 +248,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-22 14:49:55
+-- Dump completed on 2023-10-28 10:13:16
