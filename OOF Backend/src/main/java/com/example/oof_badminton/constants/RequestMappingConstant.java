@@ -16,6 +16,7 @@ public class RequestMappingConstant {
     public static final String FIND_ALL_PRODUCT_API = "/api/products";
 
     public static final String PRODUCT_DETAIL_API = "/api/products/**";
+    public static final String IMAGE_API = "/api/image/**";
 
     public static final String ADD_CART_API = "/api/cart/add";
 
@@ -24,6 +25,7 @@ public class RequestMappingConstant {
             SIGN_UP_API,
             SIGN_OUT_API,
             FIND_ALL_PRODUCT_API,
-            PRODUCT_DETAIL_API);
+            PRODUCT_DETAIL_API,
+            IMAGE_API);
 
 }
