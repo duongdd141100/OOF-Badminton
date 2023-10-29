@@ -26,7 +26,7 @@ public class BaseEntity implements Serializable {
 
     @Column(name = "created_by")
     @CreatedBy
-    private Date createdBy;
+    private Float createdBy;
 
     @Column(name = "updated_date")
     @LastModifiedDate
@@ -34,5 +34,5 @@ public class BaseEntity implements Serializable {
 
     @Column(name = "updated_by")
     @LastModifiedBy
-    private Date updatedBy;
+    private Float updatedBy;
 }
