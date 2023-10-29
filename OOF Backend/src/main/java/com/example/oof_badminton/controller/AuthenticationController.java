@@ -28,6 +28,7 @@ public class AuthenticationController {
     @GetMapping("/me")
     public ResponseEntity<BaseResponse<String>> me(@AuthenticationPrincipal User user) {
         user.getRole().setUsers(new ArrayList<>());
+        user.setCarts(new ArrayList<>());
         return ResponseEntity.ok(BaseResponse.ok(user));
     }
 
