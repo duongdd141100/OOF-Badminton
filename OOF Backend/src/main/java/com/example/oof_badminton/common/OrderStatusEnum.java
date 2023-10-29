@@ -4,13 +4,15 @@ import lombok.Getter;
 
 @Getter
 public enum OrderStatusEnum {
-    DELIVERING("Delivering"),
-    COMPLETED("Completed");
+    DELIVERING(1, "Delivering"),
+    COMPLETED(2, "Completed");
 
+    private Integer id;
 
     private String message;
 
-    OrderStatusEnum(String message) {
+    OrderStatusEnum(Integer id, String message) {
+        this.id = id;
         this.message = message;
     }
 
