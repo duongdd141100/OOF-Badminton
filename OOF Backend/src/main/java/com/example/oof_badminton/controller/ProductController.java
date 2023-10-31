@@ -1,6 +1,7 @@
 package com.example.oof_badminton.controller;
 
 import com.example.oof_badminton.common.BaseResponse;
+import com.example.oof_badminton.dto.ProductDto;
 import com.example.oof_badminton.entity.Product;
 import com.example.oof_badminton.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("")
-    public ResponseEntity<BaseResponse<List<Product>>> getProduct(
+    public ResponseEntity<BaseResponse<List<ProductDto>>> getProduct(
             @RequestParam(name = "categoryId", required = false) Integer categoryId,
             @RequestParam(name = "supplierId", required = false) Integer supplierId,
             @RequestParam(name = "searchText", required = false) String searchText,

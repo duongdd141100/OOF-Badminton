@@ -15,6 +15,7 @@ import java.util.List;
                 columns = {
                         @ColumnResult(name = "id", type = Integer.class),
                         @ColumnResult(name = "productName", type = String.class),
+                        @ColumnResult(name = "imagePath", type = String.class),
                         @ColumnResult(name = "price", type = Float.class),
                         @ColumnResult(name = "status", type = String.class),
                         @ColumnResult(name = "description", type = String.class),
