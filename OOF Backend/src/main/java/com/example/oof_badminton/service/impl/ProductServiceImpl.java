@@ -1,6 +1,7 @@
 package com.example.oof_badminton.service.impl;
 
 import com.example.oof_badminton.custom_repository.ProductCustomRepository;
+import com.example.oof_badminton.dto.ProductDto;
 import com.example.oof_badminton.entity.Product;
 import com.example.oof_badminton.repository.ProductRepository;
 import com.example.oof_badminton.service.ProductService;
@@ -21,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepo;
 
     @Override
-    public List<Product> findAll(Integer categoryId, Integer supplierId, String searchText, Float minPrice, Float maxPrice) {
+    public List<ProductDto> findAll(Integer categoryId, Integer supplierId, String searchText, Float minPrice, Float maxPrice) {
         return productCustomRepo.findAll(categoryId, supplierId, searchText, minPrice, maxPrice);
     }
 

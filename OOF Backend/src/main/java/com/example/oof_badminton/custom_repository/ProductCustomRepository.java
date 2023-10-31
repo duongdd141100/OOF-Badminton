@@ -1,6 +1,6 @@
 package com.example.oof_badminton.custom_repository;
 
-import com.example.oof_badminton.entity.Product;
+import com.example.oof_badminton.dto.ProductDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ public class ProductCustomRepository {
     private String SQL_QUERY = "select p.id as id," +
             " p.name as productName," +
             " p.price as price," +
+            " p.path as imagePath," +
             " case when p.status = 1 then \"Active\" else \"Inactive\" end as status," +
             " p.description as description," +
             " c.name as categoryName," +
@@ -28,7 +29,7 @@ public class ProductCustomRepository {
             " inner join suppliers s" +
             " on p.supplier_id = s.id";
 
-    public List<Product> findAll(Integer categoryId, Integer supplierId, String searchText, Float minPrice, Float maxPrice) {
+    public List<ProductDto> findAll(Integer categoryId, Integer supplierId, String searchText, Float minPrice, Float maxPrice) {
         String conditionQuery = createCondition(categoryId, supplierId, searchText, minPrice, maxPrice);
         Query query = entityManager.createNativeQuery(SQL_QUERY + conditionQuery, "ProductDto");
         if (categoryId != null) {
