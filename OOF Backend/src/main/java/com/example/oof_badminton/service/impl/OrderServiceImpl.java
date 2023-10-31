@@ -62,4 +62,19 @@ public class OrderServiceImpl implements OrderService {
             return x;
         }).toList();
     }
+
+    @Override
+    public Order findById(Float id) {
+        Order order = orderRepo.findById(id).get();
+        order.setUser(null);
+        order.getOrderProducts().stream().map(o -> {
+            o.setOrder(null);
+            o.getProductSize().getProduct().setProductSizes(null);
+            o.getProductSize().getProduct().getCategory().setProducts(null);
+            o.getProductSize().getProduct().getSupplier().setProducts(null);
+            o.getProductSize().setCarts(null);
+            return o;
+        }).toList();
+        return order;
+    }
 }
