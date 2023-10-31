@@ -10,4 +10,6 @@ public interface OrderService {
     Order createOrder(User user, List<OrderDto> orderDto);
 
     List<Order> findAll(User user);
+
+    Order findById(Float id);
 }

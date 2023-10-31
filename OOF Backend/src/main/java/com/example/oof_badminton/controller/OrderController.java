@@ -43,4 +43,14 @@ public class OrderController {
             return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BaseResponse<List<Order>>> getOrderDetail(@PathVariable Float id) {
+        try {
+            return ResponseEntity.ok(BaseResponse.ok(orderService.findById(id)));
+        } catch (Exception e) {
+            log.error("Get Order Detail: " + e);
+            return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));
+        }
+    }
 }
