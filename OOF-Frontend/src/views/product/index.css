@@ -1,0 +1,29 @@
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.news {
+  width: 100%;
+}
+
+.swiper-slide-image {
+  background-color: aliceblue;
+  height: 10rem !important;
+}
+
+.group-product-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.product-container {
+  width: 60%;
+}
+
+.swiper-slide-tab {
+  background-color: rgb(233, 245, 236);
+  height: 2rem !important;
+}
