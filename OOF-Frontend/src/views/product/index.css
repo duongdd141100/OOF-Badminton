@@ -2,28 +2,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%;
+  margin-left: 10%;
 }
 
-.news {
-  width: 100%;
-}
-
-.swiper-slide-image {
-  background-color: aliceblue;
-  height: 10rem !important;
-}
-
-.group-product-title {
-  width: 100%;
+.products-container {
   display: flex;
-  justify-content: center;
+  width: 100%;
+  flex-direction: row;
 }
 
-.product-container {
-  width: 60%;
+.products-column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-.swiper-slide-tab {
-  background-color: rgb(233, 245, 236);
-  height: 2rem !important;
+.product-image:hover {
+  opacity: 0.6;
+}
+
+.product-name:hover {
+  color: rgb(255, 169, 138);
+}
+
+.product-card {
+  height: 20rem !important;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.product-card:hover {
+  cursor: pointer;
 }

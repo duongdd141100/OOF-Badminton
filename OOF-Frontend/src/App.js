@@ -1,5 +1,5 @@
 import './App.css';
-import { Login, Product, Nav, Order, Footer } from '../src/views'
+import { Login, Home, Nav, Order, Footer, Product } from '../src/views'
 
 import {
   BrowserRouter as Router,
@@ -14,6 +14,9 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/home" element={(
+          <Home />
+        )} />
       <Route path="/product" element={(
           <Product />
         )} />

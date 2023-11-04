@@ -1,44 +1,56 @@
+import { useEffect, useState } from 'react';
+import { getRequest } from '../../providers/request'
 import './index.css'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css';
+import { useLocation } from "react-router-dom"
+import { BASE_URL } from '../../constant'
 
 export const Product = (props) => {
+  const [products, setProducts] = useState([])
+  const location = useLocation();
+  useEffect(() => {
+    const currentCategoryName = location?.state?.category
+    getRequest('categories').then(data => {
+      const categories = data.data.body
+      const currentCategory = categories.find(item => item?.name == currentCategoryName)
+      if (currentCategory) {
+        getRequest('products', { categoryId: currentCategory.id }).then(res => {
+          const nextProducts = res.data.body
+          setProducts(nextProducts)
+        })
+      } else {
+        getRequest('products').then(res => {
+          const nextProducts = res.data.body
+          setProducts(nextProducts)
+        })
+      }
+    })
+  }, [])
   return (
     <div className='products'>
-      <div className='news'>
-        <Swiper
-        spaceBetween={0}
-        slidesPerView={3}
-        loop={true}
-        >
-          <SwiperSlide><div className='swiper-slide-image'>Slide 1</div></SwiperSlide>
-          <SwiperSlide><div className='swiper-slide-image'>Slide 2</div></SwiperSlide>
-          <SwiperSlide><div className='swiper-slide-image'>Slide 3</div></SwiperSlide>
-          <SwiperSlide><div className='swiper-slide-image'>Slide 4</div></SwiperSlide>
-        </Swiper>
-      </div>
-      <div className='group-product-title'>New Product</div>
-      <div className='product-container'>
-        <Swiper
-        spaceBetween={0}
-        slidesPerView={3}
-        loop={true}
-        >
-          <SwiperSlide><div className='swiper-slide-tab'>All</div></SwiperSlide>
-          <SwiperSlide><div className='swiper-slide-tab'>Racket</div></SwiperSlide>
-          <SwiperSlide><div className='swiper-slide-tab'>Short Skirt</div></SwiperSlide>
-          <SwiperSlide><div className='swiper-slide-tab'>Shoe</div></SwiperSlide>
-        </Swiper>
-        <Swiper
-        spaceBetween={0}
-        slidesPerView={3}
-        loop={true}
-        >
-          <SwiperSlide><div className='swiper-slide-image'>product 1</div></SwiperSlide>
-          <SwiperSlide><div className='swiper-slide-image'>product 2</div></SwiperSlide>
-          <SwiperSlide><div className='swiper-slide-image'>product 3</div></SwiperSlide>
-          <SwiperSlide><div className='swiper-slide-image'>product 4</div></SwiperSlide>
-        </Swiper>
+      <div className='products-container'>
+        <div className='products-column'>
+          {products.length && products.map((item, index) => {
+            if (index < products.length / 2) {
+              return (
+              <div className='product-card'>
+                <img className='product-image' src={`${BASE_URL}${item.imagePath}`} width='100%' height='80%' />
+                <div className='product-name' style={{ display: 'flex', justifyContent: 'center' }}>{item.productName}</div>
+                <div className='product-price' style={{ display: 'flex', justifyContent: 'center', color: 'rgb(214, 81, 123)' }}>{item.price} đ</div>
+              </div>
+            )
+          }
+          })}
+        </div>
+        <div className='products-column'>
+          {products.length && products.map((item, index) => {
+            if (index >= products.length / 2) return (<div className='product-card'>
+                <img className='product-image' src={`${BASE_URL}${item.imagePath}`} width='100%' height='80%' />
+                <div className='product-name' style={{ display: 'flex', justifyContent: 'center' }}>{item.productName}</div>
+                <div className='product-price' style={{ display: 'flex', justifyContent: 'center', color: 'rgb(214, 81, 123)' }}>{item.price} đ</div>
+              </div>
+              )
+          })}
+        </div>
       </div>
     </div>
   )

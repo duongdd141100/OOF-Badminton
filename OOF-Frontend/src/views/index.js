@@ -1,5 +1,6 @@
 export * from './login'
-export * from './product'
+export * from './home'
 export * from './nav'
 export * from './order'
 export * from './footer'
+export * from './product'

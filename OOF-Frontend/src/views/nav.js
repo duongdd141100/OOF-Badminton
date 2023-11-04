@@ -1,32 +1,76 @@
+import React, { useState } from 'react'
 import { Menu } from 'antd'
-import { ShoppingOutlined, OrderedListOutlined } from '@ant-design/icons';
+import { ShoppingOutlined, ShoppingCartOutlined, DollarOutlined, FormOutlined, ExceptionOutlined, QuestionCircleOutlined, InfoCircleOutlined, ContactsOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router'
 
 const items = [
   {
+    label: 'Home',
+    key: 'home',
+    redirectTo: '/home',
+  },
+  {
     label: 'Product',
     key: 'product',
     redirectTo: '/product',
-    icon: <ShoppingOutlined />
+    icon: <ShoppingOutlined style={{fontSize: '20px'}} />,
+  },
+  {
+    label: 'Sale',
+    key: 'sale',
+    redirectTo: '/sale',
+    icon: <DollarOutlined style={{fontSize: '20px'}} />
+  },
+  {
+    label: 'News',
+    key: 'news',
+    redirectTo: '/news',
+    icon: <FormOutlined style={{fontSize: '20px'}} />
+  },
+  {
+    label: 'Policy',
+    key: 'policy',
+    redirectTo: '/policy',
+    icon: <ExceptionOutlined style={{fontSize: '20px'}} />
+  },
+  {
+    label: 'Guide',
+    key: 'guide',
+    redirectTo: '/guide',
+    icon: <QuestionCircleOutlined style={{fontSize: '20px'}} />
+  },
+  {
+    label: 'About',
+    key: 'about',
+    redirectTo: '/about',
+    icon: <InfoCircleOutlined style={{fontSize: '20px'}} />
+  },
+  {
+    label: 'Contact',
+    key: 'contact',
+    redirectTo: '/contact',
+    icon: <ContactsOutlined style={{fontSize: '20px'}} />
   },
   {
     label: 'Order',
     key: 'order',
     redirectTo: '/order',
-    icon: <OrderedListOutlined />
+    icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
   }
 ]
 
 export const Nav = () => {
+  const [current, setCurrent] = useState(window.location.pathname.substring(1))
   const navigate = useNavigate()
   const onClick = (e) => {
     const redirectTo = items.find(item => {
       return item.key == e.key
     }).redirectTo
+    setCurrent(e.key)
     navigate(redirectTo, { replace: true })
   };
 
   return (
-    <Menu onClick={onClick} mode="horizontal" selectedKeys={'product'} items={items} />
+    <Menu style={{height: '5vh'}} onClick={onClick} mode="horizontal" selectedKeys={[current]} items={items} />
   )
 }
