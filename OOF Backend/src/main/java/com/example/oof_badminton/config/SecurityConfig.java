@@ -39,6 +39,7 @@ public class SecurityConfig {
                                     RequestMappingConstant.FIND_ALL_PRODUCT_API,
                                     RequestMappingConstant.PRODUCT_DETAIL_API,
                                     RequestMappingConstant.IMAGE_API,
+                                    RequestMappingConstant.FIND_ALL_BANNER_API,
                                     RequestMappingConstant.FIND_ALL_CATEGORY_API).permitAll()
                             .anyRequest().authenticated();
                 });
