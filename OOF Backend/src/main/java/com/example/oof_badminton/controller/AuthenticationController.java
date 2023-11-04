@@ -17,6 +17,7 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/api/auth")
 @Slf4j
+@CrossOrigin
 public class AuthenticationController {
 
     @Autowired
