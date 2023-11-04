@@ -33,11 +33,12 @@ export const Home = (props) => {
         }
       })
       setProducts(nextProducts)
-      nextProducts.sort((a, b) => b.price - a.price)
-      if (nextProducts.length > 10) {
-        nextProducts.length = 10
+      const currentHotProducts = JSON.parse(JSON.stringify(nextProducts))
+      currentHotProducts.sort((a, b) => b.price - a.price)
+      if (currentHotProducts.length > 10) {
+        currentHotProducts.length = 10
       }
-      setHotProducts(nextProducts)
+      setHotProducts(currentHotProducts)
       setCategories(nextCategories)
       setCurrentCategory(nextCategories[0])
     })
@@ -46,7 +47,7 @@ export const Home = (props) => {
     if (!currentCategory) return
     if (!products.length) return
     const productByCategory = []
-    products.forEach(item => {
+    JSON.parse(JSON.stringify(products)).forEach(item => {
       if (item.categoryName === currentCategory) productByCategory.push(item)
     })
     productByCategory.sort((a, b) => b.id - a.id)
