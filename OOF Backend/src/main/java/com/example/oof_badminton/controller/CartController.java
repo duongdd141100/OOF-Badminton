@@ -43,10 +43,10 @@ public class CartController {
         }
     }
 
-    @PostMapping("/delete/{productSizeId}")
-    public ResponseEntity<String> cart(@AuthenticationPrincipal User user, @PathVariable Float productSizeId) {
+    @PostMapping("/delete/{cartId}")
+    public ResponseEntity<String> cart(@AuthenticationPrincipal User user, @PathVariable Float cartId) {
         try {
-            cartService.delete(user, productSizeId);
+            cartService.delete(user, cartId);
             return ResponseEntity.ok(ResponseCodeEnum.OK.getMessage());
         } catch (Exception e) {
             log.error("Delete Cart: " + e);
