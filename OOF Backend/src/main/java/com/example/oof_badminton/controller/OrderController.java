@@ -24,14 +24,14 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/create")
-    public ResponseEntity<BaseResponse<String>> createOrder(
+    public ResponseEntity<String> createOrder(
             @AuthenticationPrincipal User user, @RequestBody List<OrderDto> orderDto) {
         try {
             orderService.createOrder(user, orderDto);
-            return ResponseEntity.ok(BaseResponse.ok(ResponseCodeEnum.OK.getMessage()));
+            return ResponseEntity.ok(ResponseCodeEnum.OK.getMessage());
         } catch (Exception e) {
             log.error("Create Order: " + e);
-            return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
