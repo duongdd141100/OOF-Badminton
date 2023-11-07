@@ -15,4 +15,5 @@ public interface CartRepository extends JpaRepository<Cart, Float> {
     Cart findByUserIdAndProductSizeId(@Param("userId") Float userId, @Param("productSizeId") Float productSizeId);
 
     List<Cart> findByUser(User user);
+    void deleteByUserAndProductSize_Id(User user, Float productSizeId);
 ;}

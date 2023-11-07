@@ -23,13 +23,13 @@ public class CartController {
     private CartService cartService;
 
     @PostMapping("/add")
-    public ResponseEntity<BaseResponse<String>> add(@AuthenticationPrincipal User user, @RequestBody Cart cart) {
+    public ResponseEntity<String> add(@AuthenticationPrincipal User user, @RequestBody Cart cart) {
         try {
             cartService.insert(user, cart);
-            return ResponseEntity.ok(BaseResponse.ok(ResponseCodeEnum.OK.getMessage()));
+            return ResponseEntity.ok(ResponseCodeEnum.OK.getMessage());
         } catch (Exception e) {
             log.error("Add Product to cart: " + e);
-            return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -40,6 +40,17 @@ public class CartController {
         } catch (Exception e) {
             log.error("Get Cart: " + e);
             return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));
+        }
+    }
+
+    @PostMapping("/delete/{productSizeId}")
+    public ResponseEntity<String> cart(@AuthenticationPrincipal User user, @PathVariable Float productSizeId) {
+        try {
+            cartService.delete(user, productSizeId);
+            return ResponseEntity.ok(ResponseCodeEnum.OK.getMessage());
+        } catch (Exception e) {
+            log.error("Delete Cart: " + e);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

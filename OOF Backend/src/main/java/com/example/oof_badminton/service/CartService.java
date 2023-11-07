@@ -9,4 +9,6 @@ public interface CartService {
     Cart insert(User user, Cart cart);
 
     List<Cart> getCart(User user);
+
+    void delete(User user, Float productSizeId);
 }

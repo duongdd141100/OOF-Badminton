@@ -8,6 +8,7 @@ import com.example.oof_badminton.repository.ProductSizeRepository;
 import com.example.oof_badminton.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,5 +50,11 @@ public class CartServiceImpl implements CartService {
             x.getProductSize().setCarts(new ArrayList<>());
             return x;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void delete(User user, Float productSizeId) {
+        cartRepo.deleteByUserAndProductSize_Id(user, productSizeId);
     }
 }
