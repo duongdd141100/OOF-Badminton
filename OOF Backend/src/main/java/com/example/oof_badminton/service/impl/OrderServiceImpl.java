@@ -1,11 +1,8 @@
 package com.example.oof_badminton.service.impl;
 
 import com.example.oof_badminton.common.OrderStatusEnum;
-import com.example.oof_badminton.dto.OrderDto;
-import com.example.oof_badminton.entity.Order;
-import com.example.oof_badminton.entity.OrderProduct;
-import com.example.oof_badminton.entity.ProductSize;
-import com.example.oof_badminton.entity.User;
+import com.example.oof_badminton.entity.*;
+import com.example.oof_badminton.repository.CartRepository;
 import com.example.oof_badminton.repository.OrderRepository;
 import com.example.oof_badminton.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +19,13 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepo;
 
+    @Autowired
+    private CartRepository cartRepo;
+
     @Override
     @Transactional
-    public Order createOrder(User user, List<OrderDto> orderDto) {
-        if (CollectionUtils.isEmpty(orderDto)) {
+    public Order createOrder(User user, List<Float> cartIds) {
+        if (CollectionUtils.isEmpty(cartIds)) {
             throw new RuntimeException("There is no product!");
         }
         // Create order
@@ -33,14 +33,14 @@ public class OrderServiceImpl implements OrderService {
         order.setUser(user);
         order.setStatus(OrderStatusEnum.DELIVERING.getId());
         order.setOrderProducts(new ArrayList<>());
+        List<Cart> carts = cartRepo.findAllById(cartIds);
 
         // Create Order product
-        orderDto.stream().forEach(x -> {
+        carts.stream().forEach(x -> {
             OrderProduct orderProduct = new OrderProduct();
             orderProduct.setProductSize(new ProductSize());
-            orderProduct.getProductSize().setId(x.getProductSizeId());
+            orderProduct.setProductSize(x.getProductSize());
             orderProduct.setQuantity(x.getQuantity());
-            orderProduct.setNote(x.getNote());
             orderProduct.setOrder(order);
             order.getOrderProducts().add(orderProduct);
         });

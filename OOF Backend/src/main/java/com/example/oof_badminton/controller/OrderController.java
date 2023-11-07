@@ -25,9 +25,10 @@ public class OrderController {
 
     @PostMapping("/create")
     public ResponseEntity<String> createOrder(
-            @AuthenticationPrincipal User user, @RequestBody List<OrderDto> orderDto) {
+            @AuthenticationPrincipal User user,
+            @RequestBody List<Float> cartsId) {
         try {
-            orderService.createOrder(user, orderDto);
+            orderService.createOrder(user, cartsId);
             return ResponseEntity.ok(ResponseCodeEnum.OK.getMessage());
         } catch (Exception e) {
             log.error("Create Order: " + e);
