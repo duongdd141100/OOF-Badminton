@@ -14,7 +14,6 @@ export const getRequest = async (url, params = null, token = null) => {
       headers: { 
         'Authorization': 'Bearer ' + token
       },
-      data: JSON.stringify(data)
     }
     if (params) {
       return await axios.request(config, params)
