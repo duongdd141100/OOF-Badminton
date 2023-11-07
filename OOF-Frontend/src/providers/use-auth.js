@@ -1,11 +1,7 @@
 import { createContext, useCallback, useContext, useState } from 'react'
+import { getRequest, postRequest } from './request'
 
 const USER_SS_KEY = '#_user_#'
-const USERS = [
-  {username: 'vnanne', password: '1'},
-  {username: 'gogi', password: '1'},
-  {username: 'aiinauu', password: '1'}
-]
 
 export const AuthContext = createContext(null)
 export const AuthProvider = ({ children }) => {
@@ -17,7 +13,6 @@ export const AuthProvider = ({ children }) => {
     } else {
       sessionStorage.getItem(USER_SS_KEY)
     }
-
     setUser(user)
   }, [])
 
@@ -30,22 +25,18 @@ export const AuthProvider = ({ children }) => {
 
 export const useAuth = () => {
   const { user, setUser } = useContext(AuthContext)
-
   return {
     user,
     async attemptLogin (username, password) {
-      let isMatch = false
-      USERS.forEach(element => {
-        if(element.username === username && element.password === password) {
-          isMatch = true
+      await postRequest('auth/sign-in', {username, password}).then(res => {
+        if (res.data.code == 200) {
+          setUser(res.data.body)
+        } else {
+          throw new Error('Credentials mismatch...!')
         }
+      }).catch(e => {
+          throw new Error('Credentials mismatch...!')
       })
-
-      if (isMatch) {
-        setUser({ username })
-      } else {
-        throw new Error('Credentials mismatch...!')
-      }
     },
     async logout () {
       setUser(null)

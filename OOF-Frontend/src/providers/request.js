@@ -5,9 +5,40 @@ axios.defaults.headers = {
   'Content-Type': 'application/json',
 }
 
-export const getRequest = async (url, params = null) => {
+export const getRequest = async (url, params = null, token = null) => {
+  if (token) {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: url,
+      headers: { 
+        'Authorization': 'Bearer ' + token
+      },
+      data: JSON.stringify(data)
+    }
+    if (params) {
+      return await axios.request(config, params)
+    }
+    return await axios.request(config)
+  }
   if (params) {
     return await axios.get(url, { params })
   }
   return await axios.get(url)
+}
+
+export const postRequest = async (url, data = null, token = null) => {
+  if (data) {
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: url,
+      headers: { 
+        'Authorization': 'Bearer ' + token
+      },
+      data: JSON.stringify(data)
+    }
+    return await axios.request(config)
+  }
+  return await axios.post(url)
 }

@@ -1,7 +1,7 @@
 .products {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: start;
   width: 80%;
   margin-left: 10%;
 }
@@ -9,12 +9,12 @@
 .products-container {
   display: flex;
   width: 100%;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-.products-column {
+.products-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-grow: 1;
 }
 
@@ -27,6 +27,8 @@
 }
 
 .product-card {
+  width: 25%;
+  border: 1px solid black;
   height: 20rem !important;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -35,4 +37,11 @@
 
 .product-card:hover {
   cursor: pointer;
+}
+
+.filter {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }

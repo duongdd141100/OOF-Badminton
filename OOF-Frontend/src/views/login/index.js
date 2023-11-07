@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { useAuth } from '../../providers/use-auth'
 
 export const Login = (props) => {
-  const { redirectTo = '/' } = props
+  const { redirectTo = '/home' } = props
   const { attemptLogin } = useAuth()
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
@@ -13,12 +13,9 @@ export const Login = (props) => {
 
   const signinHandler = async e => {
     e.preventDefault()
-
     setError('')
-
     try {
       await attemptLogin(username, password)
-
       navigate(redirectTo, { replace: true })
     } catch (error) {
       setError(error.message)
