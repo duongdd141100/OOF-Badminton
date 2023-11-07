@@ -28,7 +28,19 @@ export const getRequest = async (url, params = null, token = null) => {
 }
 
 export const postRequest = async (url, data = null, token = null) => {
-  if (data) {
+  if(token) {
+    if (data) {
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: url,
+        headers: { 
+          'Authorization': 'Bearer ' + token
+        },
+        data: JSON.stringify(data)
+      }
+      return await axios.request(config)
+    }
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
@@ -36,6 +48,14 @@ export const postRequest = async (url, data = null, token = null) => {
       headers: { 
         'Authorization': 'Bearer ' + token
       },
+    }
+    return await axios.post(config)
+  }
+  if (data) {
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: url,
       data: JSON.stringify(data)
     }
     return await axios.request(config)
