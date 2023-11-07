@@ -11,7 +11,4 @@ public class Size extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "gender")
-    private Boolean gender;
-
 }

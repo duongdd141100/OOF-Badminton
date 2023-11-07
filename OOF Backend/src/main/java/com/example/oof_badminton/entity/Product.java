@@ -35,7 +35,7 @@ public class Product extends BaseEntity{
     @Column(name = "path")
     private String path;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 999)
     private String description;
 
     @Column(name = "status")
