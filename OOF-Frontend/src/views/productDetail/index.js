@@ -51,7 +51,7 @@ export const ProductDetail = (props) => {
     postRequest(`cart/add`, {productSize: {id: productSize}, quantity: numOfProduct}, user).then(data => {
       const code = data.status
       if (code == 200) {
-        openNotification('topRight', 'Added to card', `Added to card ${currentStockQuantity} products`)
+        openNotification('topRight', 'Added to card', `Added to card ${numOfProduct} products`)
       } else {
         openNotification('topRight', 'Order failed', `Code ${code}`)
       }
