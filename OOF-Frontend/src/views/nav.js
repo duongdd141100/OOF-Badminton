@@ -60,6 +60,12 @@ const items = [
     icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
   },
   {
+    label: 'Cart',
+    key: 'cart',
+    redirectTo: '/cart',
+    icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
+  },
+  {
     label: 'login',
     key: '/login',
     redirectTo: '/login',
@@ -122,6 +128,12 @@ const itemsLogged = [
     icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
   },
   {
+    label: 'Cart',
+    key: 'cart',
+    redirectTo: '/cart',
+    icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
+  },
+  {
     label: 'logout',
     key: '/logout',
     redirectTo: '/logout',
@@ -181,6 +193,12 @@ const totalItem = [
     label: 'Order',
     key: 'order',
     redirectTo: '/order',
+    icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
+  },
+  {
+    label: 'Cart',
+    key: 'cart',
+    redirectTo: '/cart',
     icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
   },
   {

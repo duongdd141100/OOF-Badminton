@@ -12,6 +12,22 @@ export const Cart = (props) => {
   const [cart, setCart] = useState(null)
   const navigate = useNavigate()
 
+  function handleOrder() {
+
+  }
+
+  function handleRemoveCart() {
+
+  }
+
+  function handleOrderAll() {
+
+  }
+
+  function handleRemoveAll() {
+    
+  }
+
   useEffect(() => {
     getRequest('/cart', null, user).then(data => {
       const carts = data.data.body
@@ -51,8 +67,8 @@ export const Cart = (props) => {
           })}
         </table>
         <div className='action-all'>
-          <div className='order-all button'>Order All</div>
-          <div className='remove-all button'>Remove All</div>
+          <div className='order-all button' onClick={handleOrderAll}>Order All</div>
+          <div className='remove-all button' onClick={handleRemoveAll}>Remove All</div>
         </div>
       </div>
       }

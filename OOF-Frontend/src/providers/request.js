@@ -8,7 +8,7 @@ axios.defaults.headers = {
 export const getRequest = async (url, params = null, token = null) => {
   if (token) {
     let config = {
-      method: 'get',
+      method: 'GET',
       maxBodyLength: Infinity,
       url: url,
       headers: { 

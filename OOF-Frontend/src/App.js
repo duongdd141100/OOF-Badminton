@@ -35,6 +35,7 @@ const AppRoutes = () => {
             <Cart />
         </RequireAuth>
       )} />
+      <Route path="/*" element={<Home />} />
     </Routes>
   )
 }
