@@ -8,6 +8,16 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "orders")
+@SqlResultSetMapping(
+        name = "OrderDto",
+        classes = @ConstructorResult(
+                targetClass = com.example.oof_badminton.dto.OrderDto.class,
+                columns = {
+                        @ColumnResult(name = "orderId", type = Float.class),
+                        @ColumnResult(name = "status", type = Boolean.class),
+                }
+        )
+)
 public class Order extends BaseEntity {
 
     @ManyToOne

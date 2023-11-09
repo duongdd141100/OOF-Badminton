@@ -3,6 +3,7 @@ package com.example.oof_badminton.controller;
 import com.example.oof_badminton.common.BaseResponse;
 import com.example.oof_badminton.common.ResponseCodeEnum;
 import com.example.oof_badminton.dto.OrderDto;
+import com.example.oof_badminton.dto.OrderWithOrderProductDto;
 import com.example.oof_badminton.entity.Order;
 import com.example.oof_badminton.entity.User;
 import com.example.oof_badminton.service.OrderService;
@@ -37,7 +38,7 @@ public class OrderController {
     }
 
     @GetMapping("")
-    public ResponseEntity<BaseResponse<List<Order>>> getOrders(@AuthenticationPrincipal User user) {
+    public ResponseEntity<BaseResponse<List<OrderWithOrderProductDto>>> getOrders(@AuthenticationPrincipal User user) {
         try {
             return ResponseEntity.ok(BaseResponse.ok(orderService.findAll(user)));
         } catch (Exception e) {

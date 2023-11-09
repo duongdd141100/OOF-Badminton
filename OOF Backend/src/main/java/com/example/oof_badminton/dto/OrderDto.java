@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class OrderDto {
-    private Float productSizeId;
-    private Integer quantity;
-    private String note;
+    private Float orderId;
+    private Boolean status;
 }

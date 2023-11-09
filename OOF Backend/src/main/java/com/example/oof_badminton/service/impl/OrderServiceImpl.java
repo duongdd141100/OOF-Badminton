@@ -1,6 +1,10 @@
 package com.example.oof_badminton.service.impl;
 
 import com.example.oof_badminton.common.OrderStatusEnum;
+import com.example.oof_badminton.custom_repository.OrderCustomRepository;
+import com.example.oof_badminton.custom_repository.OrderProductCustomRepository;
+import com.example.oof_badminton.dto.OrderDto;
+import com.example.oof_badminton.dto.OrderWithOrderProductDto;
 import com.example.oof_badminton.entity.*;
 import com.example.oof_badminton.repository.CartRepository;
 import com.example.oof_badminton.repository.OrderRepository;
@@ -26,6 +30,12 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CartService cartService;
 
+    @Autowired
+    private OrderCustomRepository orderCustomRepo;
+
+    @Autowired
+    private OrderProductCustomRepository orderProductCustomRepo;
+
     @Override
     @Transactional
     public Order createOrder(User user, List<Float> cartIds) {
@@ -46,6 +56,7 @@ public class OrderServiceImpl implements OrderService {
             orderProduct.setProductSize(x.getProductSize());
             orderProduct.setQuantity(x.getQuantity());
             orderProduct.setOrder(order);
+            orderProduct.getProductSize().getProduct().setComments(null);
             order.getOrderProducts().add(orderProduct);
         });
 
@@ -54,19 +65,29 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findAll(User user) {
-        return orderRepo.findAllByUserOrderByStatusAscCreatedDateDesc(user).stream().map(x -> {
-            x.setUser(null);
-            x.getOrderProducts().stream().map(o -> {
-                o.setOrder(null);
-                o.getProductSize().getProduct().setProductSizes(null);
-//                o.getProductSize().getProduct().getCategory().setProducts(null);
-//                o.getProductSize().getProduct().getSupplier().setProducts(null);
-//                o.getProductSize().setCarts(null);
-                return o;
-            }).toList();
-            return x;
-        }).toList();
+    public List<OrderWithOrderProductDto> findAll(User user) {
+        List<OrderDto> orders = orderCustomRepo.findByUserId(user.getId());
+        List<OrderWithOrderProductDto> orderWithOrderProducts = new ArrayList<>();
+        for (OrderDto order : orders) {
+            OrderWithOrderProductDto orderWithOrderProductDto = new OrderWithOrderProductDto();
+            orderWithOrderProductDto.setOrder(order);
+            orderWithOrderProductDto.setOrderProducts(orderProductCustomRepo.findByOrderId(order.getOrderId()));
+            orderWithOrderProducts.add(orderWithOrderProductDto);
+        }
+        return orderWithOrderProducts;
+//        return orderRepo.findAllByUserOrderByStatusAscCreatedDateDesc(user).stream().map(x -> {
+//            x.setUser(null);
+//            x.getOrderProducts().stream().map(o -> {
+//                o.setOrder(null);
+//                o.getProductSize().getProduct().setProductSizes(null);
+//                o.getProductSize().getProduct().setComments(null);
+////                o.getProductSize().getProduct().getCategory().setProducts(null);
+////                o.getProductSize().getProduct().getSupplier().setProducts(null);
+////                o.getProductSize().setCarts(null);
+//                return o;
+//            }).toList();
+//            return x;
+//        }).toList();
     }
 
     @Override
