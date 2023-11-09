@@ -6,6 +6,10 @@ import { BASE_URL } from '../../constant'
 import './index.css'
 
 export const Order = (props) => {
+  const USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
   const user = useContext(AuthContext).user
   const [orders, setOrders] = useState([])
   const navigate = useNavigate()
@@ -41,13 +45,13 @@ export const Order = (props) => {
                       <div className='order-supplier-name'>{product.supplierName}</div>
                       <div className='order-quantity'>x{product.quantity}</div>
                     </div>
-                    <div className='unit-price'>đ{product.unitPrice}</div>
+                    <div className='unit-price'>{USDollar.format(product.unitPrice)}</div>
                   </div>
                 )
               })}
-              <div className='total-price'>Thành tiền: {item.orderProducts.reduce((accumulator, object) => {
+              <div className='total-price'>Thành tiền: {USDollar.format(item.orderProducts.reduce((accumulator, object) => {
                 return accumulator + object.quantity * object.unitPrice;
-                }, 0)}
+                }, 0))}
               </div>
             </div>
           )
