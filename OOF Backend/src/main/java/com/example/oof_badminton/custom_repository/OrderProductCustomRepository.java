@@ -16,6 +16,7 @@ public class OrderProductCustomRepository {
 
     public List<OrderProductDto> findByOrderId(Float orderId) {
         String sql = "select p.name as productName," +
+                " p.path," +
                 " c.name as categoryName," +
                 " s.name as supplierName," +
                 " op.quantity," +

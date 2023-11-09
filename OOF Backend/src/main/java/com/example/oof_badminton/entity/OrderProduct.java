@@ -12,6 +12,7 @@ import lombok.Data;
                 targetClass = com.example.oof_badminton.dto.OrderProductDto.class,
                 columns = {
                         @ColumnResult(name = "productName", type = String.class),
+                        @ColumnResult(name = "path", type = String.class),
                         @ColumnResult(name = "categoryName", type = String.class),
                         @ColumnResult(name = "supplierName", type = String.class),
                         @ColumnResult(name = "quantity", type = Integer.class),

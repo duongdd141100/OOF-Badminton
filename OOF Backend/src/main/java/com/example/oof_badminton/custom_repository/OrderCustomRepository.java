@@ -14,7 +14,8 @@ public class OrderCustomRepository {
     private EntityManager entityManager;
 
     public List<OrderDto> findByUserId(Float userId) {
-        String sql = "select id as orderId, status from orders where user_id = :userId";
+        String sql = "select id as orderId, status from orders where user_id = :userId" +
+                " order by status asc, created_date desc";
         Query query = entityManager.createNativeQuery(sql, "OrderDto");
         query.setParameter("userId", userId);
         return query.getResultList();
