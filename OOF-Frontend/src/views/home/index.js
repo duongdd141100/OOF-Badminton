@@ -5,6 +5,7 @@ import { getRequest } from '../../providers/request'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { BASE_URL } from '../../constant'
+import 'swiper/css';
 
 
 export const Home = (props) => {
@@ -72,6 +73,7 @@ export const Home = (props) => {
           spaceBetween={0}
           slidesPerView={1}
           loop={true}
+          autoplay={{ delay: 200 }}
         >
           {banners.length && banners.map(item => {
             return <SwiperSlide><div className='swiper-slide-banner'><img style={{width: '100%'}} src={`${BASE_URL}${item.path}`}></img></div></SwiperSlide>

@@ -60,7 +60,8 @@ export const ProductDetail = (props) => {
         openNotification('topRight', 'Order failed', `Code ${code}`)
       }
     }).catch(e => {
-      navigate(`/product`)
+      if (user) navigate(`/product`)
+      else navigate(`/login`)
     })
   }
 
