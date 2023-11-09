@@ -30,7 +30,7 @@ export const Order = (props) => {
           {orders.map(item => {
           return (
             <div className='order-card'>
-              <div className='order-status' style={{color: `${item.order.status ? 'green' : 'yellow'}`}}><div style={{marginRight: '0.5rem'}}>{item.order.status ? 'Đơn hàng thành công' : 'Đơn hàng đang giao'}</div></div>
+              <div className='order-status' style={{color: `${item.order.status ? 'green' : 'rgb(181, 215, 14)'}`}}><div style={{marginRight: '0.5rem'}}>{item.order.status ? 'Đơn hàng thành công' : 'Đơn hàng đang giao'}</div></div>
               {item.orderProducts.map(product => {
                 return (
                   <div className='order-card-body'> 

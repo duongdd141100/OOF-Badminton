@@ -4,10 +4,10 @@ export const Footer = () => {
     <div className="footer-container">
       <div class="footer-info">
         <div>Thông tin chung</div>
-        <p><b>VNB Sports</b> là hệ thống cửa hàng cầu lông với hơn 50 chi nhánh trên toàn quốc, cung cấp
+        <p><b>OOF Badminton</b> là hệ thống cửa hàng cầu lông với hơn 50 chi nhánh trên toàn quốc, cung cấp
           sỉ và lẻ các mặt hàng dụng cụ cầu lông từ phong trào tới chuyên nghiệp</p>
         <p>
-          <b>Với sứ mệnh:</b> <em>"VNB cam kết mang đến những sản phẩm, dịch vụ chất lượng tốt nhất phục vụ cho
+          <b>Với sứ mệnh:</b> <em>"OOF Badminton cam kết mang đến những sản phẩm, dịch vụ chất lượng tốt nhất phục vụ cho
             người chơi thể thao để nâng cao sức khỏe của chính mình."</em></p>
         <p>
           <b>Tầm nhìn:</b> <em>"Trở thành nhà phân phối và sản xuất thể thao lớn nhất Việt Nam"</em></p>
@@ -31,15 +31,15 @@ export const Footer = () => {
         <div class="content-contact clearfix">
           <span class="list_footer">
             <b>Email: </b>
-            <a title="info@shopvnb.com" href="/">
-              info@shopvnb.com								</a>
+            <a title="info@shopoof.com" href="/">
+              info@shopoof.com								</a>
           </span>
         </div>
         <div class="content-contact clearfix">
           <span class="list_footer">
             <b>Hợp tác kinh doanh: </b>
             <a href="/">
-              0947342259 (Ms. Thảo)
+              0947342259 (Mr. Dương)
             </a>
           </span>
         </div>
@@ -55,7 +55,7 @@ export const Footer = () => {
           <span class="list_footer">
             <b>Nhượng quyền thương hiệu: </b>
             <a href="/">
-              0334.741.141 (Mr. Hậu)
+              0334.741.141 (Mr. Dương)
             </a>
           </span>
         </div>
@@ -63,7 +63,7 @@ export const Footer = () => {
           <span class="list_footer">
             <b>Than phiền dịch vụ: </b>
             <a href="/">
-              0334.741.141 (Mr. Hậu)
+              0334.741.141 (Mr. Dương)
             </a>
           </span>
         </div>
