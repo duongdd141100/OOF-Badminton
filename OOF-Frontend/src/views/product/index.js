@@ -131,13 +131,13 @@ export const Product = (props) => {
         <Space direction="vertical">
             <div style={{marginTop: '0.3rem', fontSize: '1.3rem'}}>Chủng loại</div>
             {categories.map((item) => {
-              return <div style={{color: `${selectedCategory == item.name ? 'coral' : 'black'}`}} className='filter-category' onClick={() => {handleCategory(item.name)}}>{item.name}</div>
+              return <div style={{display: 'flex', alignItems: 'center', color: `${selectedCategory == item.name ? 'coral' : 'black'}`}} className='filter-category' onClick={() => {handleCategory(item.name)}}><div style={{fontSize: '2rem', display: 'flex', alignItems: 'center', height: '100%'}}>&#x2022;</div>{item.name}</div>
             })}
         </Space>
         <Space direction="vertical">
             <div style={{marginTop: '0.3rem', fontSize: '1.3rem'}}>Thương hiệu</div>
             {suppliers.map((item) => {
-              return <div style={{color: `${selectedSupplier == item.name ? 'coral' : 'black'}`}} className='filter-category' onClick={() => {handleSupplier(item.name)}}>{item.name}</div>
+              return <div style={{display: 'flex', alignItems: 'center', color: `${selectedSupplier == item.name ? 'coral' : 'black'}`}} className='filter-category' onClick={() => {handleSupplier(item.name)}}><div style={{fontSize: '2rem', display: 'flex', alignItems: 'center', height: '100%'}}>&#x2022;</div>{item.name}</div>
             })}
         </Space>
       </div>
