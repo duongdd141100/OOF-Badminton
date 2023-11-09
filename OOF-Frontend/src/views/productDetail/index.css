@@ -112,3 +112,7 @@
 .btn-commnet:hover {
   cursor: pointer;
 }
+
+.star:hover {
+  cursor: pointer;
+}

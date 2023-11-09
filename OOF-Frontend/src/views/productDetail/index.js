@@ -24,6 +24,7 @@ export const ProductDetail = (props) => {
   const [currentStockQuantity, setCurrentStockQuantity] = useState(0)
   const [productSize, setProductSize] = useState(null)
   const [api, contextHolder] = notification.useNotification()
+  const [rate, setRate] = useState(-1)
   const [comment, setComment] = useState('')
 
   function onNumberChange (value) {
@@ -37,6 +38,10 @@ export const ProductDetail = (props) => {
       placement,
     });
   };
+
+  function hanldeRate(num) {
+    setRate(num)
+  }
 
   function handleMessageChange(e) {
     setComment(e.target.value)
@@ -80,7 +85,11 @@ export const ProductDetail = (props) => {
 
   function handleClickComment(id) {
     if (!comment) return
-    postRequest(`products/comment`, {product: {id}, comment: comment, star: 5}, user).then(data => {
+    if (rate < 0) {
+      window.alert('Vui lòng đánh giá sản phẩm')
+      return
+    }
+    postRequest(`products/comment`, {product: {id}, comment: comment, star: rate}, user).then(data => {
       const code = data.status
       if (code == 200) loadProductDetai()
     }).catch(e => {
@@ -166,7 +175,7 @@ export const ProductDetail = (props) => {
             </div>
             <div className='detail'>
               <div style={{fontSize: '2rem'}}>Thông số kỹ thuật</div>
-              {product.description.split("##").map(e => {
+              {product.description.split("/\/+/").map(e => {
                 return <div>{e}</div>
               })}
             </div>
@@ -178,13 +187,20 @@ export const ProductDetail = (props) => {
                     <div style={{display: 'flex', alignItems: 'center', width: 'fit-content'}}>
                       <div style={{height: '3rem', width: '3rem'}}><img style={{width: 'auto', height: '100%'}} src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"/></div>
                       <div>{e.commentator}</div>
+                    <div style={{marginLeft: '0.5rem'}}>{generateAsterisks(e.star)}</div>
                     </div>
                     <div style={{marginLeft: '3rem', marginBottom: '1rem', marginTop: '0.5rem'}}>{e.comment}</div>
-                    <div style={{marginLeft: '0.5rem'}}>{generateAsterisks(e.star)}</div>
                   </div>
                 </div>
               })}
               <textarea onChange={handleMessageChange} placeholder='Để lại bình luận' style={{marginLeft: '7rem', width: 'calc(100% - 7rem)', marginTop: '1rem', minHeight: '7rem'}}></textarea>
+              <div style={{width: '100%', display: 'flex', justifyContent: 'end', marginBottom: '1rem'}}>
+                <button className='star' style={{backgroundColor: 'white', border: '0', fontSize: '1.3rem'}} onClick={() => {hanldeRate(1)}}>{rate < 1 ? '☆' : '⭐'}</button>
+                <button className='star' style={{backgroundColor: 'white', border: '0', fontSize: '1.3rem'}} onClick={() => {hanldeRate(2)}}>{rate < 2 ? '☆' : '⭐'}</button>
+                <button className='star' style={{backgroundColor: 'white', border: '0', fontSize: '1.3rem'}} onClick={() => {hanldeRate(3)}}>{rate < 3 ? '☆' : '⭐'}</button>
+                <button className='star' style={{backgroundColor: 'white', border: '0', fontSize: '1.3rem'}} onClick={() => {hanldeRate(4)}}>{rate < 4 ? '☆' : '⭐'}</button>
+                <button className='star' style={{backgroundColor: 'white', border: '0', fontSize: '1.3rem'}} onClick={() => {hanldeRate(5)}}>{rate < 5 ? '☆' : '⭐'}</button>
+              </div>
               <div style={{width: '100%', display: 'flex', justifyContent: 'end'}}><button onClick={() => {handleClickComment(product.id)}} className='btn-commnet' style={{background: 'coral', border: '0', width: '6rem', height: '2rem'}}>Bình luận</button></div>
             </div>
           </div>)
