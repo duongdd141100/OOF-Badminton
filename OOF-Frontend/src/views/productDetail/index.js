@@ -172,7 +172,7 @@ export const ProductDetail = (props) => {
             </div>
             <div className='comment'>
               <div style={{fontSize: '2rem'}}>Bình luận</div>
-              {product.comment.map(e => {
+              {product.comments.map(e => {
                 return <div>
                   <div style={{marginLeft: '7rem'}}>
                     <div style={{display: 'flex', alignItems: 'center', width: 'fit-content'}}>
