@@ -1,8 +1,10 @@
 package com.example.oof_badminton.controller;
 
 import com.example.oof_badminton.common.BaseResponse;
+import com.example.oof_badminton.common.ResponseCodeEnum;
 import com.example.oof_badminton.dto.ProductDto;
 import com.example.oof_badminton.entity.Product;
+import com.example.oof_badminton.entity.Comment;
 import com.example.oof_badminton.repository.ProductRepository;
 import com.example.oof_badminton.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +56,16 @@ public class ProductController {
             return ResponseEntity.ok(BaseResponse.ok(productService.findById(productId)));
         } catch (Exception e) {
             log.error("Get product detail: " + e);
+            return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));
+        }
+    }
+
+    @PostMapping("/comment")
+    public ResponseEntity<BaseResponse<String>> comment(@RequestBody Comment rate) {
+        try {
+            return ResponseEntity.ok(BaseResponse.ok(ResponseCodeEnum.OK.getMessage()));
+        } catch (Exception e) {
+            log.error("Comment: " + e);
             return ResponseEntity.badRequest().body(BaseResponse.fail(e.getMessage()));
         }
     }

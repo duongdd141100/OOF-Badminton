@@ -8,7 +8,6 @@ import com.example.oof_badminton.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,12 +30,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepo.findById(productId).map(x -> {
 //            x.getCategory().setProducts(new ArrayList<>());
 //            x.getSupplier().setProducts(new ArrayList<>());
-//            x.getProductSizes().stream().map(p -> {
-//                p.setProduct(null);
-//                p.setCarts(new ArrayList<>());
-//                return p;
-//            }).collect(Collectors.toList());
-            x.getRates().stream().map(r -> {
+            x.getProductSizes().stream().map(p -> {
+                p.setProduct(null);
+                return p;
+            }).collect(Collectors.toList());
+            x.getComments().stream().map(r -> {
                 r.setProduct(null);
                 return r;
             }).toList();

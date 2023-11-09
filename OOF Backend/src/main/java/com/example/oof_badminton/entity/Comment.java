@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "rates")
-public class Rate extends BaseEntity{
+@Table(name = "comments")
+public class Comment extends BaseEntity{
     @Column(name = "commentator")
     private String commentator;
 
