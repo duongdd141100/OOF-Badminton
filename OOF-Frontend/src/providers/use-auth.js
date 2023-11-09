@@ -32,10 +32,10 @@ export const useAuth = () => {
         if (res.data.code == 200) {
           setUser(res.data.body)
         } else {
-          throw new Error('Credentials mismatch...!')
+          throw new Error('Thông tin đăng nhập sai...!')
         }
       }).catch(e => {
-          throw new Error('Credentials mismatch...!')
+          throw new Error('Thông tin đăng nhập sai...!')
       })
     },
     async logout () {

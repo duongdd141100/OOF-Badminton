@@ -7,12 +7,13 @@ import { Radio, Space } from 'antd'
 import { useNavigate } from 'react-router'
 
 const orderOptions = [
-  { label: 'Increase', value: 'increase' },
-  { label: 'Degrease', value: 'degrease' },
+  { label: 'Giá tăng dần', value: 'increase' },
+  { label: 'Giá giảm dần', value: 'degrease' },
 ]
 
 export const Product = (props) => {
   const [products, setProducts] = useState([])
+  const [categories, setCategories] = useState([])
   const [groupOfFour, setGroupOfFour] = useState([])
   const navigate = useNavigate()
   const location = useLocation();
@@ -43,8 +44,9 @@ export const Product = (props) => {
   useEffect(() => {
     const currentCategoryName = location?.state?.category
     getRequest('categories').then(data => {
-      const categories = data.data.body
-      const currentCategory = categories.find(item => item?.name == currentCategoryName)
+      const resCategories = data.data.body
+      setCategories(resCategories)
+      const currentCategory = resCategories.find(item => item?.name == currentCategoryName)
       if (currentCategory) {
         getRequest('products', { categoryId: currentCategory.id }).then(res => {
           const nextProducts = res.data.body

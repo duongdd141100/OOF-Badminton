@@ -13,12 +13,15 @@ import { AuthProvider } from './providers/use-auth'
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={
+          <Login />
+        } 
+      />
       <Route path="/home" element={(
-          <Home />
+        <Home />
         )} />
       <Route path="/product" element={(
-          <Product />
+            <Product />
         )} />
       <Route path="/productDetail/*" element={(
         <RequireAuth>
@@ -45,11 +48,11 @@ function App() {
     <Router>
       <div className='App'>
         <AuthProvider>
-          <Nav />
           <div className='app-content'>
+            <Nav />
             <AppRoutes />
+            <Footer />
           </div>
-          <Footer />
         </AuthProvider>
       </div>
     </Router>

@@ -30,7 +30,7 @@ export const postRequest = async (url, data = null, token = null) => {
   if(token) {
     if (data) {
       let config = {
-        method: 'post',
+        method: 'POST',
         maxBodyLength: Infinity,
         url: url,
         headers: { 
@@ -41,14 +41,14 @@ export const postRequest = async (url, data = null, token = null) => {
       return await axios.request(config)
     }
     let config = {
-      method: 'post',
+      method: 'POST',
       maxBodyLength: Infinity,
       url: url,
       headers: { 
         'Authorization': 'Bearer ' + token
       },
     }
-    return await axios.post(config)
+    return await axios.request(config)
   }
   if (data) {
     let config = {

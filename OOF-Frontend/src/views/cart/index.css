@@ -12,6 +12,7 @@
 }
 
 table {
+  margin-top: 2rem;
   width: 80%;
 }
 
@@ -23,15 +24,16 @@ td, th {
 tr:nth-child(even){background-color: rgb(247, 241, 239);}
 
 tr:hover {
-  background-color: #cff2dd;
+  background-color: #edfaf3;
 }
 
 th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
-  background-color: #86efac;
-  color: coral;
+  text-align: center;
+  background-color: #363636;
+  color: white;
+  font-weight: bold;
 }
 
 .button {
@@ -44,15 +46,6 @@ th {
   cursor: pointer;
 }
 
-.order {
-  background-color: #86efac;
-  margin-right: 1rem;
-}
-
-.remove {
-  background-color: rgb(246, 155, 122);
-}
-
 .action-all {
   width: 100%;
   display: flex;
@@ -61,17 +54,19 @@ th {
 }
 
 .order-all {
-  background-color: #76eda2;
+  background-color: #c9ffdd;
   width: 6rem;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .remove-all {
-  background-color: rgb(246, 155, 122);
+  background-color: rgb(255, 214, 199);
   width: 6rem;
   display: flex;
   justify-content: center;
   margin-left: 1rem;
   margin-right: 10%;
+  align-items: center;
 }

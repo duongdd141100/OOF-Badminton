@@ -7,66 +7,54 @@ import { useAuth } from '../providers/use-auth'
 
 const items = [
   {
-    label: 'Home',
+    label: 'Trang chủ',
     key: 'home',
     redirectTo: '/home',
   },
   {
-    label: 'Product',
+    label: 'Sản phẩm',
     key: 'product',
     redirectTo: '/product',
     icon: <ShoppingOutlined style={{fontSize: '20px'}} />,
   },
   {
-    label: 'Sale',
+    label: 'Khuyến mãi',
     key: 'sale',
     redirectTo: '/sale',
     icon: <DollarOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'News',
+    label: 'Sản phẩm mới',
     key: 'news',
     redirectTo: '/news',
     icon: <FormOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Policy',
+    label: 'Chính sách',
     key: 'policy',
     redirectTo: '/policy',
     icon: <ExceptionOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Guide',
+    label: 'Hướng dẫn',
     key: 'guide',
     redirectTo: '/guide',
     icon: <QuestionCircleOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'About',
+    label: 'Về chúng tôi',
     key: 'about',
     redirectTo: '/about',
     icon: <InfoCircleOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Contact',
+    label: 'Liên hệ',
     key: 'contact',
     redirectTo: '/contact',
     icon: <ContactsOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Order',
-    key: 'order',
-    redirectTo: '/order',
-    icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
-  },
-  {
-    label: 'Cart',
-    key: 'cart',
-    redirectTo: '/cart',
-    icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
-  },
-  {
-    label: 'login',
+    label: 'Đăng nhập',
     key: '/login',
     redirectTo: '/login',
     icon: <LoginOutlined style={{fontSize: '20px'}} />
@@ -75,66 +63,66 @@ const items = [
 
 const itemsLogged = [
   {
-    label: 'Home',
+    label: 'Trang chủ',
     key: 'home',
     redirectTo: '/home',
   },
   {
-    label: 'Product',
+    label: 'Sản phẩm',
     key: 'product',
     redirectTo: '/product',
     icon: <ShoppingOutlined style={{fontSize: '20px'}} />,
   },
   {
-    label: 'Sale',
+    label: 'Khuyến mãi',
     key: 'sale',
     redirectTo: '/sale',
     icon: <DollarOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'News',
+    label: 'Sản phẩm mới',
     key: 'news',
     redirectTo: '/news',
     icon: <FormOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Policy',
+    label: 'Chính sách',
     key: 'policy',
     redirectTo: '/policy',
     icon: <ExceptionOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Guide',
+    label: 'Hướng dẫn',
     key: 'guide',
     redirectTo: '/guide',
     icon: <QuestionCircleOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'About',
+    label: 'Về chúng tôi',
     key: 'about',
     redirectTo: '/about',
     icon: <InfoCircleOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Contact',
+    label: 'Liên hệ',
     key: 'contact',
     redirectTo: '/contact',
     icon: <ContactsOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Order',
+    label: 'Đơn hàng',
     key: 'order',
     redirectTo: '/order',
     icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Cart',
+    label: 'Giỏ hàng',
     key: 'cart',
     redirectTo: '/cart',
     icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'logout',
+    label: 'Đăng xuất',
     key: '/logout',
     redirectTo: '/logout',
     icon: <LogoutOutlined style={{fontSize: '20px'}} />
@@ -143,72 +131,72 @@ const itemsLogged = [
 
 const totalItem = [
   {
-    label: 'Home',
+    label: 'Trang chủ',
     key: 'home',
     redirectTo: '/home',
   },
   {
-    label: 'Product',
+    label: 'Sản phẩm',
     key: 'product',
     redirectTo: '/product',
     icon: <ShoppingOutlined style={{fontSize: '20px'}} />,
   },
   {
-    label: 'Sale',
+    label: 'Khuyến mãi',
     key: 'sale',
     redirectTo: '/sale',
     icon: <DollarOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'News',
+    label: 'Sản phẩm mới',
     key: 'news',
     redirectTo: '/news',
     icon: <FormOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Policy',
+    label: 'Chính sách',
     key: 'policy',
     redirectTo: '/policy',
     icon: <ExceptionOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Guide',
+    label: 'Hướng dẫn',
     key: 'guide',
     redirectTo: '/guide',
     icon: <QuestionCircleOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'About',
+    label: 'Về chúng tôi',
     key: 'about',
     redirectTo: '/about',
     icon: <InfoCircleOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Contact',
+    label: 'Liên hệ',
     key: 'contact',
     redirectTo: '/contact',
     icon: <ContactsOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Order',
+    label: 'Đơn hàng',
     key: 'order',
     redirectTo: '/order',
     icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'Cart',
+    label: 'Giỏ hàng',
     key: 'cart',
     redirectTo: '/cart',
     icon: <ShoppingCartOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'logout',
+    label: 'Đăng xuất',
     key: '/logout',
     redirectTo: '/logout',
     icon: <LogoutOutlined style={{fontSize: '20px'}} />
   },
   {
-    label: 'login',
+    label: 'Đăng nhập',
     key: '/login',
     redirectTo: '/login',
     icon: <LoginOutlined style={{fontSize: '20px'}} />
@@ -233,6 +221,6 @@ export const Nav = () => {
   };
 
   return (
-    <Menu style={{height: '7vh'}} onClick={onClick} mode="horizontal" selectedKeys={[current]} items={auth.user ? itemsLogged : items} />
+    <Menu style={{height: '7vh', display: 'flex', justifyContent: 'center'}} onClick={onClick} mode="horizontal" selectedKeys={[current]} items={auth.user ? itemsLogged : items} />
   )
 }

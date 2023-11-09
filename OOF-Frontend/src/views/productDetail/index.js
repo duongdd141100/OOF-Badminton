@@ -82,7 +82,12 @@ export const ProductDetail = (props) => {
       <div className='product-detail-container'>
         {product && (
           <div>
-            <div className='product-name'>{product.name}</div>
+            <div className='product-name-detail'>{product.name}</div>
+            <div className='product-detail-info'>
+                <div>Price: {product.price}</div>
+                <div>Category: {product.category.name}</div>
+                <div>Supplier: {product.supplier.name}</div>
+              </div>
             <div className='product-detail'>
               <div className='product-image'>
                 <img src={`${BASE_URL}${product.path}`} width='100%' height='100%' />

@@ -24,25 +24,26 @@ export const Login = (props) => {
 
   return (
     <div className='login-container'>
+      <div className='app-name'>OOF BADMINTON</div>
       <div className='login-form' >
-        <div className='form-head'>Sign in</div>
+        <div className='form-head'>Đăng nhập</div>
         <div className='form-content'>
           <div className='input-container'>
             <input className='username input' placeholder='Username' onChange={e => setUsername(e.target.value)} value={username} type="text" ></input>
             <input className='password input' placeholder='Password' onChange={e => setPassword(e.target.value)} value={password} type="password" ></input>
             <div className='forgot-account-container'>
-              <a className='forgot-account'>Forgot Username/Password?</a>
+              <a className='forgot-account'>Quên mật khẩu?</a>
             </div>
           </div>
 
           <div className='signin-container'>
             <div style={{ display: error ? 'block' : 'hidden' }} className='error'>{error ? 'Oops, account not match!' : ''}</div>
-            <button className='signin' onClick={signinHandler} >SIGN IN</button>
+            <button className='signin' onClick={signinHandler} >Đăng nhập</button>
           </div>
 
           <div className='signup-container'>
-            <div className='signup-title'>Don't have account?</div>
-            <a className='signup'>SIGN UP NOW</a>
+            <div className='signup-title'>Chưa có tài khoản?</div>
+            <a className='signup'>Đăng ký ngay</a>
           </div>
         </div>
       </div>

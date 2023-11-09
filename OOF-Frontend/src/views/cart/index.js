@@ -1,42 +1,74 @@
 import { useEffect, useState, useContext } from 'react';
-import { getRequest } from '../../providers/request'
+import { getRequest, postRequest } from '../../providers/request'
 import './index.css'
 import { useLocation } from "react-router-dom"
 import { BASE_URL } from '../../constant'
-import { Radio, Space } from 'antd'
+import { Checkbox } from 'antd'
 import { useNavigate } from 'react-router'
 import { AuthContext } from '../../providers/use-auth'
 
 export const Cart = (props) => {
   const user = useContext(AuthContext).user
   const [cart, setCart] = useState(null)
+  const [selectedCards, setSelectedCards] = useState([])
   const navigate = useNavigate()
 
-  function handleOrder() {
-
+  function onCheckboxChange(e, id) {
+    const nextSeletedCart = JSON.parse(JSON.stringify(selectedCards))
+    if (e.target.checked) {
+      nextSeletedCart.push(id)
+      setSelectedCards(nextSeletedCart)
+    } else {
+      removeElement(nextSeletedCart, id)
+      setSelectedCards(nextSeletedCart)
+    }
   }
 
-  function handleRemoveCart() {
-
-  }
+  function removeElement(array, elem) {
+    var index = array.indexOf(elem);
+    if (index > -1) {
+        array.splice(index, 1);
+    }
+}
 
   function handleOrderAll() {
-
+    const url = '/orders/create'
+    postRequest(url, selectedCards, user).then(data => {
+      if(data.status === 200) {
+        setSelectedCards([])
+        handleLoadCart()
+      }
+      else {
+        window.alert('Order fail with code:' + data.status)
+      }
+    }).catch(e => {
+      window.alert(e)
+    })
   }
 
   function handleRemoveAll() {
-    
+    const url = '/cart/delete'
+    postRequest(url, selectedCards, user).then(data => {
+      if(data.status === 200) {
+      selectedCards([])
+      handleLoadCart()
+      }
+    }).catch(e => {
+      window.alert(e)
+    })
+  }
+
+  function handleLoadCart() {
+    getRequest('/cart', null, user).then(data => {
+      const carts = data.data.body
+      setCart(carts)
+    }).catch(e => {
+      navigate(`/product`)
+    })
   }
 
   useEffect(() => {
-    getRequest('/cart', null, user).then(data => {
-      const carts = data.data.body
-      console.info(carts)
-      setCart(carts)
-    }).catch(e => {
-      console.info(e)
-      // navigate(`/product`)
-    })
+    handleLoadCart()
   }, [])
 
   return (
@@ -45,11 +77,11 @@ export const Cart = (props) => {
       <div className='cart-body'>
         <table>
           <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>Action</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th></th>
           </tr>
           {cart.map(item => {
             return (
@@ -59,16 +91,15 @@ export const Cart = (props) => {
                 <td>{item.quantity}</td>
                 <td>{item.quantity * item.productSize.product.price + 'đ'}</td>
                 <td>
-                  <button className='order button' onClick={() => {handleOrder(item.productSize.id)}}>Order</button>
-                  <button className='remove button' onClick={() => {handleRemoveCart(item.productSize.id)}}>Remove</button>
+                  <Checkbox onChange={(e) => {onCheckboxChange(e, item.id)}} />
                 </td>
               </tr>
             )
           })}
         </table>
         <div className='action-all'>
-          <div className='order-all button' onClick={handleOrderAll}>Order All</div>
-          <div className='remove-all button' onClick={handleRemoveAll}>Remove All</div>
+          <div className='order-all button' onClick={handleOrderAll}>Đặt mua</div>
+          <div className='remove-all button' onClick={handleRemoveAll}>Xóa đơn</div>
         </div>
       </div>
       }
