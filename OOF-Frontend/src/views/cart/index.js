@@ -93,7 +93,7 @@ export const Cart = (props) => {
           {cart.map(item => {
             return (
               <tr key={item.id}>
-                <td><img style={{width: 'auto', height: '3rem'}} src={`${BASE_URL}${item.productSize.product.path}`}/></td>
+                <td><img style={{width: 'auto', height: '15rem'}} src={`${BASE_URL}${item.productSize.product.path}`}/></td>
                 <td>{item.productSize.product.name}</td>
                 <td>{USDollar.format(item.productSize.product.price)}</td>
                 <td>{item.quantity}</td>
