@@ -87,18 +87,42 @@ export const ProductDetail = (props) => {
       <div className='product-detail-container'>
         {product && (
           <div>
-            <div className='product-name-detail'>{product.name}</div>
             <div className='product-detail-info'>
-                <div>Giá: {USDollar.format(product.price)}</div>
-                <div>Mặt hàng: {product.category.name}</div>
-                <div>Nhà cung cấp: {product.supplier.name}</div>
+              <div style={{marginLeft: '25rem'}}>
+                <div className='product-name-detail'>{product.name}</div>
+                <div>
+                  <div style={{display: 'flex', marginTop: '2rem', marginBottom: '1rem'}}>
+                    <div>Mặt hàng:</div>
+                    <div style={{color: 'coral', marginLeft: '2px'}}>{product.category.name}</div>
+                  </div>
+                  <div style={{display: 'flex', marginBottom: '1rem'}}>
+                    <div>Nhà cung cấp: </div>
+                    <div style={{color: 'coral', marginLeft: '2px'}}>{product.supplier.name}</div>
+                  </div>
+                  <div style={{color: '#ee3d51'}}>{USDollar.format(product.price)}</div>
+                </div>
               </div>
+            </div>
             <div className='product-detail'>
               <div className='product-image'>
-                <img src={`${BASE_URL}${product.path}`} width='100%' height='100%' />
+                <img src={`${BASE_URL}${product.path}`} width='auto' height='100%' />
               </div>
-              <div className='detail'>
-                {product.description}
+              <div className='discount' style={{padding: '1rem'}}>
+              <div class="product-promotions-list-content">
+									<p>✔ Thanh toán sau khi kiểm tra và nhận hàng<br/>
+✔ Hỗ trợ đổi size</p>
+
+<p><strong>🎁Ưu đãi thêm khi mua sản phẩm tại <a href="/">OOF Badminton</a></strong></p>
+
+<p>✅ <a href="/">Sơn logo mặt vợt</a> miễn phí</p>
+
+<p>✅ <a href="/">Bảo hành lưới đan</a> trong 72 giờ</p>
+
+<p>✅&nbsp;<a href="/">Thay gen vợt</a> miễn phí trọn đời</p>
+
+<p>✅ <a href="/">Tích luỹ điểm thành viên</a> Premium</p>
+
+<p>✅ <a href="/">Voucher giảm giá</a> cho lần mua hàng tiếp theo</p>										</div>
               </div>
             </div>
             <div className='cart-info'>
@@ -113,6 +137,9 @@ export const ProductDetail = (props) => {
                 <button className='add-to-cart' onClick={handleAddToCard} >Add to card</button>
               </div>
             </div>
+            <div className='detail'>
+                {product.description}
+              </div>
           </div>)
         }
       </div>
