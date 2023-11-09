@@ -20,7 +20,11 @@ export const Product = (props) => {
   const [categories, setCategories] = useState([])
   const [groupOfFour, setGroupOfFour] = useState([])
   const navigate = useNavigate()
-  const location = useLocation();
+  const location = useLocation()
+  const [originalProducts, setOriginalProducts] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedSupplier, setSelectedSupplier] = useState('')
+  const [suppliers, setSuppliers] = useState([])
 
   function chunkArray(arr, chunkSize) {
     const chunkedArray = [];
@@ -45,6 +49,44 @@ export const Product = (props) => {
     navigate(`/productDetail/${id}`, {state: {id}})
   }
 
+  function handleCategory(name) {
+    if (selectedCategory == name) {
+      setSelectedCategory('')
+      setProducts(originalProducts)
+      return
+    }
+    setSelectedCategory(name)
+    if (originalProducts.length == 0) setOriginalProducts(products)
+    let nextProducts = JSON.parse(JSON.stringify(products))
+    if (originalProducts.length == 0) setOriginalProducts(products)
+    else nextProducts = JSON.parse(JSON.stringify(originalProducts))
+    nextProducts = nextProducts.filter(item => {
+      let supplierCondition = true
+      if (selectedSupplier != '') supplierCondition = item.supplierName == selectedSupplier
+      return item.categoryName == name && supplierCondition
+    })
+    setProducts(nextProducts)
+  }
+
+  function handleSupplier(name) {
+    if (selectedSupplier == name) {
+      setSelectedSupplier('')
+      setProducts(originalProducts)
+      return
+    }
+    setSelectedSupplier(name)
+    if (originalProducts.length == 0) setOriginalProducts(products)
+    let nextProducts = JSON.parse(JSON.stringify(products))
+    if (originalProducts.length == 0) setOriginalProducts(products)
+    else nextProducts = JSON.parse(JSON.stringify(originalProducts))
+    nextProducts = nextProducts.filter(item => {
+      let categoryCondition = true
+      if (selectedCategory != '') categoryCondition = item.categoryName == selectedCategory
+      return item.supplierName == name && categoryCondition
+    })
+    setProducts(nextProducts)
+  }
+
   useEffect(() => {
     const currentCategoryName = location?.state?.category
     getRequest('categories').then(data => {
@@ -62,6 +104,11 @@ export const Product = (props) => {
           setProducts(nextProducts)
         })
       }
+    })
+
+    getRequest('suppliers').then(data => {
+      const resSuppliers = data.data.body
+      setSuppliers(resSuppliers)
     })
   }, [])
 
@@ -81,6 +128,18 @@ export const Product = (props) => {
             })}
           </Space>
         </Radio.Group>
+        <Space direction="vertical">
+            <div style={{marginTop: '0.3rem', fontSize: '1.3rem'}}>Chủng loại</div>
+            {categories.map((item) => {
+              return <div style={{color: `${selectedCategory == item.name ? 'coral' : 'black'}`}} className='filter-category' onClick={() => {handleCategory(item.name)}}>{item.name}</div>
+            })}
+        </Space>
+        <Space direction="vertical">
+            <div style={{marginTop: '0.3rem', fontSize: '1.3rem'}}>Thương hiệu</div>
+            {suppliers.map((item) => {
+              return <div style={{color: `${selectedSupplier == item.name ? 'coral' : 'black'}`}} className='filter-category' onClick={() => {handleSupplier(item.name)}}>{item.name}</div>
+            })}
+        </Space>
       </div>
       <div className='products-container'>
           {groupOfFour.length && groupOfFour.map((item) => {

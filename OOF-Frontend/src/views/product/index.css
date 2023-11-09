@@ -51,3 +51,12 @@
 .product-name {
   font-size: 1rem;
 }
+
+.filter-category {
+  color: rgb(71, 71, 71);
+  margin-left: 0.5rem;
+}
+
+.filter-category:hover {
+  cursor: pointer;
+}
