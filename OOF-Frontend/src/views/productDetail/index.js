@@ -175,8 +175,8 @@ export const ProductDetail = (props) => {
             </div>
             <div className='detail'>
               <div style={{fontSize: '2rem'}}>Thông số kỹ thuật</div>
-              {product.description.split("/\/+/").map(e => {
-                return <div>{e}</div>
+              {product.description.split("##").map(e => {
+                return <div style={{marginBottom: '0.5rem'}}>{e}</div>
               })}
             </div>
             <div className='comment'>
