@@ -91,7 +91,7 @@ export const Cart = (props) => {
           </tr>
           {cart.map(item => {
             return (
-              <tr>
+              <tr key={item.id}>
                 <td>{item.productSize.product.name}</td>
                 <td>{item.productSize.product.price + 'đ'}</td>
                 <td>{item.quantity}</td>
