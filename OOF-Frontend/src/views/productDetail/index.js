@@ -138,8 +138,11 @@ export const ProductDetail = (props) => {
               </div>
             </div>
             <div className='detail'>
-                {product.description}
-              </div>
+              <div>Thông số kỹ thuật</div>
+              {product.description.split(/\//).map(e => {
+                return <div>{e}</div>
+              })}
+            </div>
           </div>)
         }
       </div>
