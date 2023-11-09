@@ -50,42 +50,34 @@ export const Product = (props) => {
   }
 
   function handleCategory(name) {
-    if (selectedCategory == name) {
+    if (name == selectedCategory) {
       setSelectedCategory('')
-      setProducts(originalProducts)
       return
     }
     setSelectedCategory(name)
     if (originalProducts.length == 0) setOriginalProducts(products)
-    let nextProducts = JSON.parse(JSON.stringify(products))
-    if (originalProducts.length == 0) setOriginalProducts(products)
-    else nextProducts = JSON.parse(JSON.stringify(originalProducts))
-    nextProducts = nextProducts.filter(item => {
-      let supplierCondition = true
-      if (selectedSupplier != '') supplierCondition = item.supplierName == selectedSupplier
-      return item.categoryName == name && supplierCondition
-    })
-    setProducts(nextProducts)
   }
 
   function handleSupplier(name) {
-    if (selectedSupplier == name) {
+    if (name == selectedSupplier) {
       setSelectedSupplier('')
-      setProducts(originalProducts)
       return
     }
     setSelectedSupplier(name)
     if (originalProducts.length == 0) setOriginalProducts(products)
-    let nextProducts = JSON.parse(JSON.stringify(products))
-    if (originalProducts.length == 0) setOriginalProducts(products)
-    else nextProducts = JSON.parse(JSON.stringify(originalProducts))
+  }
+
+  useEffect(() => {
+    let nextProducts = JSON.parse(JSON.stringify(originalProducts))
     nextProducts = nextProducts.filter(item => {
+      let supplierCondition = true
       let categoryCondition = true
+      if (selectedSupplier != '') supplierCondition = item.supplierName == selectedSupplier
       if (selectedCategory != '') categoryCondition = item.categoryName == selectedCategory
-      return item.supplierName == name && categoryCondition
+      return categoryCondition && supplierCondition
     })
     setProducts(nextProducts)
-  }
+  }, [selectedSupplier, selectedCategory])
 
   useEffect(() => {
     const currentCategoryName = location?.state?.category
