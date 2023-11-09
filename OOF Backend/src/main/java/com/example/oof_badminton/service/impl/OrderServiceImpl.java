@@ -4,6 +4,7 @@ import com.example.oof_badminton.common.OrderStatusEnum;
 import com.example.oof_badminton.entity.*;
 import com.example.oof_badminton.repository.CartRepository;
 import com.example.oof_badminton.repository.OrderRepository;
+import com.example.oof_badminton.service.CartService;
 import com.example.oof_badminton.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CartRepository cartRepo;
 
+    @Autowired
+    private CartService cartService;
+
     @Override
     @Transactional
     public Order createOrder(User user, List<Float> cartIds) {
@@ -32,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order();
         order.setUser(user);
         order.setStatus(OrderStatusEnum.DELIVERING.getId());
-//        order.setOrderProducts(new ArrayList<>());
+        order.setOrderProducts(new ArrayList<>());
         List<Cart> carts = cartRepo.findAllById(cartIds);
 
         // Create Order product
@@ -42,8 +46,10 @@ public class OrderServiceImpl implements OrderService {
             orderProduct.setProductSize(x.getProductSize());
             orderProduct.setQuantity(x.getQuantity());
             orderProduct.setOrder(order);
-//            order.getOrderProducts().add(orderProduct);
+            order.getOrderProducts().add(orderProduct);
         });
+
+        cartService.delete(cartIds);
         return orderRepo.save(order);
     }
 
