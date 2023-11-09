@@ -51,14 +51,14 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findAll(User user) {
         return orderRepo.findAllByUserOrderByStatusAscCreatedDateDesc(user).stream().map(x -> {
             x.setUser(null);
-//            x.getOrderProducts().stream().map(o -> {
-//                o.setOrder(null);
-//                o.getProductSize().getProduct().setProductSizes(null);
+            x.getOrderProducts().stream().map(o -> {
+                o.setOrder(null);
+                o.getProductSize().getProduct().setProductSizes(null);
 //                o.getProductSize().getProduct().getCategory().setProducts(null);
 //                o.getProductSize().getProduct().getSupplier().setProducts(null);
 //                o.getProductSize().setCarts(null);
-//                return o;
-//            }).toList();
+                return o;
+            }).toList();
             return x;
         }).toList();
     }
