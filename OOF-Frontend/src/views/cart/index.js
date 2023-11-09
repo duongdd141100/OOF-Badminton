@@ -93,7 +93,7 @@ export const Cart = (props) => {
             return (
               <tr key={item.id}>
                 <td>{item.productSize.product.name}</td>
-                <td>{item.productSize.product.price + 'đ'}</td>
+                <td>{USDollar.format(item.productSize.product.price)}</td>
                 <td>{item.quantity}</td>
                 <td>{USDollar.format(item.quantity * item.productSize.product.price)}</td>
                 <td>
