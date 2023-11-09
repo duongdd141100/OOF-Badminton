@@ -12,9 +12,9 @@ const orderOptions = [
 ]
 
 export const Product = (props) => {
-  const USDollar = new Intl.NumberFormat('en-US', {
+  const USDollar = new Intl.NumberFormat('vi-VI', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'VND',
   })
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])

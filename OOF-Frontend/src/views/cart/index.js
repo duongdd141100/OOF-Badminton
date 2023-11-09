@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router'
 import { AuthContext } from '../../providers/use-auth'
 
 export const Cart = (props) => {
-  const USDollar = new Intl.NumberFormat('en-US', {
+  const USDollar = new Intl.NumberFormat('vi-VI', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'VND',
   })
   const user = useContext(AuthContext).user
   const [cart, setCart] = useState(null)

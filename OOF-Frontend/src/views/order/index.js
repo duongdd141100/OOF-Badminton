@@ -6,9 +6,9 @@ import { BASE_URL } from '../../constant'
 import './index.css'
 
 export const Order = (props) => {
-  const USDollar = new Intl.NumberFormat('en-US', {
+  const USDollar = new Intl.NumberFormat('vi-VI', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'VND',
   })
   const user = useContext(AuthContext).user
   const [orders, setOrders] = useState([])

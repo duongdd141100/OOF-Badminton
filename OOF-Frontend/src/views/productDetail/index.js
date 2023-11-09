@@ -9,9 +9,9 @@ import { AuthContext } from '../../providers/use-auth'
 const Context = React.createContext({ name: 'Default' })
 
 export const ProductDetail = (props) => {
-  const USDollar = new Intl.NumberFormat('en-US', {
+  const USDollar = new Intl.NumberFormat('vi-VI', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'VND',
   })
   const user = useContext(AuthContext).user
   const location = useLocation()

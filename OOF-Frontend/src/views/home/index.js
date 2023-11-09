@@ -9,9 +9,9 @@ import 'swiper/css';
 
 
 export const Home = (props) => {
-  const USDollar = new Intl.NumberFormat('en-US', {
+  const USDollar = new Intl.NumberFormat('vi-VI', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'VND',
   })
   const [products, setProducts] = useState([])
   const navigate = useNavigate()
