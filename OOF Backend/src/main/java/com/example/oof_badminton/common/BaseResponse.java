@@ -20,6 +20,10 @@ public class BaseResponse<T> {
         return new BaseResponse<>(ResponseCodeEnum.FAILED.getCode(), ResponseCodeEnum.FAILED.getMessage(), message);
     }
 
+    public static BaseResponse unAuthentication(String message) {
+        return new BaseResponse<>(ResponseCodeEnum.UNAUTHENTICATION.getCode(), ResponseCodeEnum.UNAUTHENTICATION.getMessage(), message);
+    }
+
     public BaseResponse(String code, String message, T body) {
         this.code = code;
         this.message = message;
