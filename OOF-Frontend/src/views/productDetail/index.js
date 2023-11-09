@@ -24,6 +24,7 @@ export const ProductDetail = (props) => {
   const [currentStockQuantity, setCurrentStockQuantity] = useState(0)
   const [productSize, setProductSize] = useState(null)
   const [api, contextHolder] = notification.useNotification()
+  const [comment, setComment] = useState('')
 
   function onNumberChange (value) {
     setNumOfProduct(value)
@@ -36,6 +37,10 @@ export const ProductDetail = (props) => {
       placement,
     });
   };
+
+  function handleMessageChange(e) {
+    setComment(e.target.value)
+  }
 
   function generateAsterisks(num) {
     if (typeof num !== 'number' || num <= 0) {
@@ -73,7 +78,17 @@ export const ProductDetail = (props) => {
     })
   }
 
-  useEffect(() => {
+  function handleClickComment(id) {
+    if (!comment) return
+    postRequest(`products/comment`, {product: {id}, comment: comment, star: 5}, user).then(data => {
+      const code = data.status
+      if (code == 200) loadProductDetai()
+    }).catch(e => {
+      window.alert('Bình luận lỗi')
+    })
+  }
+
+  function loadProductDetai() {
     if (!id) navigate(`/products`)
     getRequest(`products/${id}`).then(data => {
       const currentProduct = data.data.body
@@ -87,6 +102,10 @@ export const ProductDetail = (props) => {
     }).catch(e => {
       navigate(`/products`)
     })
+  }
+
+  useEffect(() => {
+    loadProductDetai()
   }, [])
   const contextValue = useMemo(() => ({ name: 'Ant Design' }), [])
   return (
@@ -153,14 +172,20 @@ export const ProductDetail = (props) => {
             </div>
             <div className='comment'>
               <div style={{fontSize: '2rem'}}>Bình luận</div>
-              {product.comments.map(e => {
+              {product.comment.map(e => {
                 return <div>
-                  <div style={{height: '3rem', width: '3rem'}}><img style={{width: 'auto', height: '100%'}} src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"/></div>
-                  <div>{e.commentator}</div>
-                  <div>{e.comment}</div>
-                  <div>{generateAsterisks(e.star)}</div>
+                  <div style={{marginLeft: '7rem'}}>
+                    <div style={{display: 'flex', alignItems: 'center', width: 'fit-content'}}>
+                      <div style={{height: '3rem', width: '3rem'}}><img style={{width: 'auto', height: '100%'}} src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"/></div>
+                      <div>{e.commentator}</div>
+                    </div>
+                    <div style={{marginLeft: '3rem', marginBottom: '1rem', marginTop: '0.5rem'}}>{e.comment}</div>
+                    <div style={{marginLeft: '0.5rem'}}>{generateAsterisks(e.star)}</div>
+                  </div>
                 </div>
               })}
+              <textarea onChange={handleMessageChange} placeholder='Để lại bình luận' style={{marginLeft: '7rem', width: 'calc(100% - 7rem)', marginTop: '1rem', minHeight: '7rem'}}></textarea>
+              <div style={{width: '100%', display: 'flex', justifyContent: 'end'}}><button onClick={() => {handleClickComment(product.id)}} className='btn-commnet' style={{background: 'coral', border: '0', width: '6rem', height: '2rem'}}>Bình luận</button></div>
             </div>
           </div>)
         }

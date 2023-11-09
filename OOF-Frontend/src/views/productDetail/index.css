@@ -108,3 +108,7 @@
   margin-right: 5rem;
   border: 1px dotted coral;
 }
+
+.btn-commnet:hover {
+  cursor: pointer;
+}
