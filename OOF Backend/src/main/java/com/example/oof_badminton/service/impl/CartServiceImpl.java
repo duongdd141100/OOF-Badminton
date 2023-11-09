@@ -44,7 +44,7 @@ public class CartServiceImpl implements CartService {
         return cartRepo.findByUser(user).stream().map(x -> {
             x.setUser(null);
             x.getProductSize().getProduct().setComments(null);
-//            x.getProductSize().getProduct().setProductSizes(new ArrayList<>());
+            x.getProductSize().getProduct().setProductSizes(null);
             x.getProductSize().getProduct().setCategory(null);
 //            x.getProductSize().getProduct().getSupplier().setProducts(new ArrayList<>());
 //            x.getProductSize().setCarts(new ArrayList<>());

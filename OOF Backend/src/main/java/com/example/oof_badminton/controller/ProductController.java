@@ -5,11 +5,13 @@ import com.example.oof_badminton.common.ResponseCodeEnum;
 import com.example.oof_badminton.dto.ProductDto;
 import com.example.oof_badminton.entity.Product;
 import com.example.oof_badminton.entity.Comment;
+import com.example.oof_badminton.entity.User;
 import com.example.oof_badminton.repository.ProductRepository;
 import com.example.oof_badminton.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,8 +63,9 @@ public class ProductController {
     }
 
     @PostMapping("/comment")
-    public ResponseEntity<BaseResponse<String>> comment(@RequestBody Comment rate) {
+    public ResponseEntity comment(@AuthenticationPrincipal User user, @RequestBody Comment comment) {
         try {
+            productService.comment(user, comment);
             return ResponseEntity.ok(BaseResponse.ok(ResponseCodeEnum.OK.getMessage()));
         } catch (Exception e) {
             log.error("Comment: " + e);

@@ -2,7 +2,9 @@ package com.example.oof_badminton.service.impl;
 
 import com.example.oof_badminton.custom_repository.ProductCustomRepository;
 import com.example.oof_badminton.dto.ProductDto;
+import com.example.oof_badminton.entity.Comment;
 import com.example.oof_badminton.entity.Product;
+import com.example.oof_badminton.entity.User;
 import com.example.oof_badminton.repository.ProductRepository;
 import com.example.oof_badminton.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +42,11 @@ public class ProductServiceImpl implements ProductService {
             }).toList();
             return x;
         }).get();
+    }
+
+    @Override
+    public void comment(User user, Comment rate) {
+        rate.setCommentator(user.getFullname());
+
     }
 }
