@@ -4,8 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum OrderStatusEnum {
-    DELIVERING(1, "Delivering"),
-    COMPLETED(2, "Completed");
+    DELIVERING(0, "Delivering"),
+    COMPLETED(1, "Completed");
 
     private Integer id;
 
