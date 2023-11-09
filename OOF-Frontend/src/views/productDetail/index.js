@@ -124,7 +124,7 @@ export const ProductDetail = (props) => {
         {product && (
           <div>
             <div className='product-detail-info'>
-              <div style={{marginLeft: '25rem'}}>
+              <div style={{marginLeft: '35rem'}}>
                 <div className='product-name-detail'>{product.name}</div>
                 <div>
                   <div style={{display: 'flex', marginTop: '2rem', marginBottom: '1rem'}}>
