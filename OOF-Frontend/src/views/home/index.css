@@ -27,12 +27,20 @@
   cursor: pointer;
 }
 
-.product-image:hover {
+.home-product-image:hover {
   opacity: 0.6;
+}
+
+.home-product-image {
+  height: 80%;
 }
 
 .product-name:hover {
   color: rgb(255, 169, 138);
+}
+
+.home-product-name {
+  font-size: 1rem;
 }
 
 .group-product-title {

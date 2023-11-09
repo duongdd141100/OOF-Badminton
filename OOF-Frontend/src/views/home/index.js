@@ -95,8 +95,8 @@ export const Home = (props) => {
           {newProducts.length && newProducts.map(item => {
             return (<SwiperSlide>
               <div className='swiper-slide-image' onClick={() => {navigate(`/productDetail/${item.id}`, {state: {id: item.id}})}} >
-                <img className='product-image' src={`${BASE_URL}${item.imagePath}`} width='100%' height='80%' />
-                <div className='product-name' style={{ display: 'flex', justifyContent: 'center' }}>{item.productName}</div>
+                <div className='home-product-image'><img  src={`${BASE_URL}${item.imagePath}`} width='100%' height='80%' /></div>
+                <div className='home-product-name' style={{ display: 'flex', justifyContent: 'center' }}>{item.productName}</div>
                 <div className='product-price' style={{ display: 'flex', justifyContent: 'center', color: 'rgb(214, 81, 123)' }}>{item.price} đ</div>
               </div>
             </SwiperSlide>)
@@ -112,8 +112,8 @@ export const Home = (props) => {
         >
           {hotProducts.length && hotProducts.map(item => {
             return (<SwiperSlide><div className='swiper-slide-image' onClick={() => {navigate(`/productDetail/${item.id}`, {state: {id: item.id}})}} ><div className='swiper-slide-image' >
-              <img className='product-image' src={`${BASE_URL}${item.imagePath}`} width='100%' height='80%' />
-              <div className='product-name' style={{ display: 'flex', justifyContent: 'center' }}>{item.productName}</div>
+              <div className='home-product-image'><img  src={`${BASE_URL}${item.imagePath}`} width='100%' height='80%' /></div>
+              <div className='home-product-name' style={{ display: 'flex', justifyContent: 'center' }}>{item.productName}</div>
               <div className='product-price' style={{ display: 'flex', justifyContent: 'center', color: 'rgb(214, 81, 123)' }}>{item.price} đ</div>
             </div></div></SwiperSlide>)
           })}
@@ -125,7 +125,7 @@ export const Home = (props) => {
           {categories.length && categories.map((item, index) => {
             const max = categories.length / 2
             if (index < max) {
-              return <div className='category' style={{fontSize: '2rem', backgroundPosition: 'center', backgroundImage: `url('http://localhost:8089${products.find(e => e.categoryName === item)?.imagePath}'`}} onClick={() => { navigate(`/product`, { state: { category: item } }) }}>{item}</div>
+              return <div className='category' style={{fontSize: '2rem', backgroundPosition: 'center', backgroundImage: `url('http://localhost:8089${products.find(e => e.categoryName === item)?.imagePath}'`}} onClick={() => { navigate(`/product`, { state: { category: item } }) }}><div style={{backgroundColor: 'white', width: 'fit-content'}}>{item}</div></div>
             }
           })}
         </div>
@@ -133,7 +133,7 @@ export const Home = (props) => {
           {categories.length && categories.map((item, index) => {
             const max = categories.length / 2
             if (index >= max) {
-              return <div className='category' style={{fontSize: '2rem', backgroundPosition: 'center', backgroundImage: `url('http://localhost:8089${products.find(e => e.categoryName === item)?.imagePath}'`}} onClick={() => { navigate(`/product`, { state: { category: item } }) }} >{item}</div>
+              return <div className='category' style={{fontSize: '2rem', backgroundPosition: 'center', backgroundImage: `url('http://localhost:8089${products.find(e => e.categoryName === item)?.imagePath}'`}} onClick={() => { navigate(`/product`, { state: { category: item } }) }} ><div style={{backgroundColor: 'white', width: 'fit-content'}}>{item}</div></div>
             }
           })}
         </div>

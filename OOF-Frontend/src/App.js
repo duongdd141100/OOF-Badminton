@@ -24,9 +24,7 @@ const AppRoutes = () => {
             <Product />
         )} />
       <Route path="/productDetail/*" element={(
-        <RequireAuth>
-            <ProductDetail />
-        </RequireAuth>
+          <ProductDetail />
       )} />
       <Route path="/order" element={(
         <RequireAuth>
@@ -48,11 +46,11 @@ function App() {
     <Router>
       <div className='App'>
         <AuthProvider>
+          <Nav />
           <div className='app-content'>
-            <Nav />
             <AppRoutes />
-            <Footer />
           </div>
+          <Footer />
         </AuthProvider>
       </div>
     </Router>
