@@ -12,6 +12,10 @@ const orderOptions = [
 ]
 
 export const Product = (props) => {
+  const USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
   const [groupOfFour, setGroupOfFour] = useState([])
@@ -87,7 +91,7 @@ export const Product = (props) => {
                     <div className='product-card' onClick={() => {handleProductClick(element.id)}}>
                       <img className='product-image' src={`${BASE_URL}${element.imagePath}`} width='100%' height='80%' />
                       <div className='product-name' style={{ display: 'flex', justifyContent: 'center' }}>{element.productName}</div>
-                      <div className='product-price' style={{ display: 'flex', justifyContent: 'center', color: 'rgb(214, 81, 123)' }}>{element.price} đ</div>
+                      <div className='product-price' style={{ display: 'flex', justifyContent: 'center', color: 'rgb(214, 81, 123)' }}>{USDollar.format(element.price)}</div>
                     </div>
                   )
                 })}

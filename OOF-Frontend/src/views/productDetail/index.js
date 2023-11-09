@@ -9,6 +9,10 @@ import { AuthContext } from '../../providers/use-auth'
 const Context = React.createContext({ name: 'Default' })
 
 export const ProductDetail = (props) => {
+  const USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
   const user = useContext(AuthContext).user
   const location = useLocation()
   const navigate = useNavigate()
@@ -84,9 +88,9 @@ export const ProductDetail = (props) => {
           <div>
             <div className='product-name-detail'>{product.name}</div>
             <div className='product-detail-info'>
-                <div>Price: {product.price}</div>
-                <div>Category: {product.category.name}</div>
-                <div>Supplier: {product.supplier.name}</div>
+                <div>Giá: {USDollar.format(product.price)}</div>
+                <div>Mặt hàng: {product.category.name}</div>
+                <div>Nhà cung cấp: {product.supplier.name}</div>
               </div>
             <div className='product-detail'>
               <div className='product-image'>

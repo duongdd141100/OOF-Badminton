@@ -33,6 +33,8 @@
 
 .home-product-image {
   height: 80%;
+  display: flex;
+  justify-content: center;
 }
 
 .product-name:hover {
