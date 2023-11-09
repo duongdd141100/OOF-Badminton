@@ -54,7 +54,7 @@ CREATE TABLE `carts` (
   KEY `FKb5o626f86h46m4s7ms6ginnop` (`user_id`),
   CONSTRAINT `FKb5o626f86h46m4s7ms6ginnop` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `FKgfpqcna50gld717nte7kvao3u` FOREIGN KEY (`product_size_id`) REFERENCES `product_size` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,6 +74,29 @@ CREATE TABLE `categories` (
   `path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comments` (
+  `id` float NOT NULL AUTO_INCREMENT,
+  `created_by` float DEFAULT NULL,
+  `created_date` datetime(6) DEFAULT NULL,
+  `updated_by` float DEFAULT NULL,
+  `updated_date` datetime(6) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `commentator` varchar(255) DEFAULT NULL,
+  `star` int DEFAULT NULL,
+  `product_id` float DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK6uv0qku8gsu6x1r2jkrtqwjtn` (`product_id`),
+  CONSTRAINT `FK6uv0qku8gsu6x1r2jkrtqwjtn` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +122,7 @@ CREATE TABLE `order_product` (
   KEY `FKotu2lheo1suuwhwn7c81a502o` (`product_size_id`),
   CONSTRAINT `FKl5mnj9n0di7k1v90yxnthkc73` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   CONSTRAINT `FKotu2lheo1suuwhwn7c81a502o` FOREIGN KEY (`product_size_id`) REFERENCES `product_size` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +143,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   KEY `FK32ql8ubntj5uh44ph9659tiih` (`user_id`),
   CONSTRAINT `FK32ql8ubntj5uh44ph9659tiih` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +167,7 @@ CREATE TABLE `product_size` (
   KEY `FK1yl8bbmokvonm64131xlscnci` (`size_id`),
   CONSTRAINT `FK1yl8bbmokvonm64131xlscnci` FOREIGN KEY (`size_id`) REFERENCES `sizes` (`id`),
   CONSTRAINT `FK9qjgp0xvl5jfetdt683i7wqwr` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,29 +196,6 @@ CREATE TABLE `products` (
   CONSTRAINT `FK6i174ixi9087gcvvut45em7fd` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`),
   CONSTRAINT `FKog2rp4qthbtt2lfyhfo32lsw9` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `rates`
---
-
-DROP TABLE IF EXISTS `rates`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `rates` (
-  `id` float NOT NULL AUTO_INCREMENT,
-  `comment` varchar(255) DEFAULT NULL,
-  `commentator` varchar(255) DEFAULT NULL,
-  `star` int DEFAULT NULL,
-  `product_id` float DEFAULT NULL,
-  `created_by` float DEFAULT NULL,
-  `created_date` datetime(6) DEFAULT NULL,
-  `updated_by` float DEFAULT NULL,
-  `updated_date` datetime(6) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK4mdsmkrr7od84tpgxto2v3t2e` (`product_id`),
-  CONSTRAINT `FK4mdsmkrr7od84tpgxto2v3t2e` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -289,4 +289,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-09 19:33:15
+-- Dump completed on 2023-11-10  1:16:31
