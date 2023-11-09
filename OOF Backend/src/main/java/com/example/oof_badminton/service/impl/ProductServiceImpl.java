@@ -29,13 +29,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findById(Float productId) {
         return productRepo.findById(productId).map(x -> {
-            x.getCategory().setProducts(new ArrayList<>());
-            x.getSupplier().setProducts(new ArrayList<>());
-            x.getProductSizes().stream().map(p -> {
-                p.setProduct(null);
-                p.setCarts(new ArrayList<>());
-                return p;
-            }).collect(Collectors.toList());
+//            x.getCategory().setProducts(new ArrayList<>());
+//            x.getSupplier().setProducts(new ArrayList<>());
+//            x.getProductSizes().stream().map(p -> {
+//                p.setProduct(null);
+//                p.setCarts(new ArrayList<>());
+//                return p;
+//            }).collect(Collectors.toList());
             return x;
         }).get();
     }

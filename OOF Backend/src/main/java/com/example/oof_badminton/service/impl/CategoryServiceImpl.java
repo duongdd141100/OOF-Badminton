@@ -17,12 +17,12 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> findAll() {
         return categoryRepo.findAll().stream().map(x -> {
-            x.getProducts().stream().map(p -> {
-                p.setCategory(null);
-                p.setProductSizes(null);
-                p.getSupplier().setProducts(null);
-                return p;
-            }).toList();
+//            x.getProducts().stream().map(p -> {
+//                p.setCategory(null);
+//                p.setProductSizes(null);
+//                p.getSupplier().setProducts(null);
+//                return p;
+//            }).toList();
             return x;
         }).toList();
     }

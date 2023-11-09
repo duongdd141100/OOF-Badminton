@@ -49,7 +49,7 @@ public class Product extends BaseEntity{
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    private List<ProductSize> productSizes;
+//    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+//    private List<ProductSize> productSizes;
 
 }

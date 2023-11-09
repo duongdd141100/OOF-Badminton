@@ -13,7 +13,7 @@ public class Supplier extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY)
-    private List<Product> products;
+//    @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY)
+//    private List<Product> products;
 
 }

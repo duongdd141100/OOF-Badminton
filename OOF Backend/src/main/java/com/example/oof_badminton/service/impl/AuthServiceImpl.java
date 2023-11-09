@@ -30,8 +30,8 @@ public class AuthServiceImpl implements AuthService {
         if (user != null && StringUtils.hasText(user.getUsername())) {
             User realUser = userRepo.findByUsername(user.getUsername());
             if (passwordEncoder.matches(CharBuffer.wrap(user.getPassword()), realUser.getPassword())) {
-                realUser.getRole().setUsers(new ArrayList<>());
-                realUser.setCarts(new ArrayList<>());
+//                realUser.getRole().setUsers(new ArrayList<>());
+//                realUser.setCarts(new ArrayList<>());
                 return realUser;
             }
         }

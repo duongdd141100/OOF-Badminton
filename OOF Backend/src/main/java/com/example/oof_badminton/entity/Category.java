@@ -16,7 +16,7 @@ public class Category extends BaseEntity {
     @Column(name = "path")
     private String path;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    private List<Product> products;
+//    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+//    private List<Product> products;
 
 }

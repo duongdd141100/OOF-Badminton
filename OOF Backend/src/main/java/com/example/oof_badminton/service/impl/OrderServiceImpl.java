@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order();
         order.setUser(user);
         order.setStatus(OrderStatusEnum.DELIVERING.getId());
-        order.setOrderProducts(new ArrayList<>());
+//        order.setOrderProducts(new ArrayList<>());
         List<Cart> carts = cartRepo.findAllById(cartIds);
 
         // Create Order product
@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
             orderProduct.setProductSize(x.getProductSize());
             orderProduct.setQuantity(x.getQuantity());
             orderProduct.setOrder(order);
-            order.getOrderProducts().add(orderProduct);
+//            order.getOrderProducts().add(orderProduct);
         });
         return orderRepo.save(order);
     }
@@ -51,14 +51,14 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findAll(User user) {
         return orderRepo.findAllByUserOrderByStatusAscCreatedDateDesc(user).stream().map(x -> {
             x.setUser(null);
-            x.getOrderProducts().stream().map(o -> {
-                o.setOrder(null);
-                o.getProductSize().getProduct().setProductSizes(null);
-                o.getProductSize().getProduct().getCategory().setProducts(null);
-                o.getProductSize().getProduct().getSupplier().setProducts(null);
-                o.getProductSize().setCarts(null);
-                return o;
-            }).toList();
+//            x.getOrderProducts().stream().map(o -> {
+//                o.setOrder(null);
+//                o.getProductSize().getProduct().setProductSizes(null);
+//                o.getProductSize().getProduct().getCategory().setProducts(null);
+//                o.getProductSize().getProduct().getSupplier().setProducts(null);
+//                o.getProductSize().setCarts(null);
+//                return o;
+//            }).toList();
             return x;
         }).toList();
     }
@@ -67,14 +67,14 @@ public class OrderServiceImpl implements OrderService {
     public Order findById(Float id) {
         Order order = orderRepo.findById(id).get();
         order.setUser(null);
-        order.getOrderProducts().stream().map(o -> {
-            o.setOrder(null);
-            o.getProductSize().getProduct().setProductSizes(null);
-            o.getProductSize().getProduct().getCategory().setProducts(null);
-            o.getProductSize().getProduct().getSupplier().setProducts(null);
-            o.getProductSize().setCarts(null);
-            return o;
-        }).toList();
+//        order.getOrderProducts().stream().map(o -> {
+//            o.setOrder(null);
+//            o.getProductSize().getProduct().setProductSizes(null);
+//            o.getProductSize().getProduct().getCategory().setProducts(null);
+//            o.getProductSize().getProduct().getSupplier().setProducts(null);
+//            o.getProductSize().setCarts(null);
+//            return o;
+//        }).toList();
         return order;
     }
 }

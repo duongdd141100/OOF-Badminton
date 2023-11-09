@@ -39,7 +39,7 @@ public class User extends BaseEntity {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Cart> carts;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Cart> carts;
 
 }

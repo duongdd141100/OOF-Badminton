@@ -21,7 +21,7 @@ public class ProductSize extends BaseEntity {
     @Column(name = "stock_quantity")
     private Integer stockQuantity;
 
-    @OneToMany(mappedBy = "productSize", fetch = FetchType.LAZY)
-    private List<Cart> carts;
+//    @OneToMany(mappedBy = "productSize", fetch = FetchType.LAZY)
+//    private List<Cart> carts;
 
 }
