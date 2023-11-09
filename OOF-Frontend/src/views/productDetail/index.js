@@ -37,6 +37,14 @@ export const ProductDetail = (props) => {
     });
   };
 
+  function generateAsterisks(num) {
+    if (typeof num !== 'number' || num <= 0) {
+      return ''
+    }
+  
+    return '⭐'.repeat(num);
+  }
+
   function handleSizeClick (name, stockQuantity, id) {
     setCurrentSize(name)
     setProductSize(id)
@@ -138,9 +146,20 @@ export const ProductDetail = (props) => {
               </div>
             </div>
             <div className='detail'>
-              <div>Thông số kỹ thuật</div>
-              {product.description.split(/\//).map(e => {
+              <div style={{fontSize: '2rem'}}>Thông số kỹ thuật</div>
+              {product.description.split("##").map(e => {
                 return <div>{e}</div>
+              })}
+            </div>
+            <div className='comment'>
+              <div style={{fontSize: '2rem'}}>Bình luận</div>
+              {product.comments.map(e => {
+                return <div>
+                  <div style={{height: '3rem', width: '3rem'}}><img style={{width: 'auto', height: '100%'}} src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"/></div>
+                  <div>{e.commentator}</div>
+                  <div>{e.comment}</div>
+                  <div>{generateAsterisks(e.star)}</div>
+                </div>
               })}
             </div>
           </div>)

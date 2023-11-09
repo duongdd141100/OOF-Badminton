@@ -22,6 +22,12 @@
   margin-right: 5rem;
 }
 
+.comment {
+  flex-grow: 1;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
 .size {
   height: 1.5rem;
   margin-right: 0.3rem;
