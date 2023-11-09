@@ -8,6 +8,10 @@ import { useNavigate } from 'react-router'
 import { AuthContext } from '../../providers/use-auth'
 
 export const Cart = (props) => {
+  const USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })
   const user = useContext(AuthContext).user
   const [cart, setCart] = useState(null)
   const [selectedCards, setSelectedCards] = useState([])
@@ -32,6 +36,7 @@ export const Cart = (props) => {
 }
 
   function handleOrderAll() {
+    if (!selectedCards.length) return
     const url = '/orders/create'
     postRequest(url, selectedCards, user).then(data => {
       if(data.status === 200) {
@@ -47,6 +52,7 @@ export const Cart = (props) => {
   }
 
   function handleRemoveAll() {
+    if (!selectedCards.length) return
     const url = '/cart/delete'
     postRequest(url, selectedCards, user).then(data => {
       if(data.status === 200) {
@@ -89,7 +95,7 @@ export const Cart = (props) => {
                 <td>{item.productSize.product.name}</td>
                 <td>{item.productSize.product.price + 'đ'}</td>
                 <td>{item.quantity}</td>
-                <td>{item.quantity * item.productSize.product.price + 'đ'}</td>
+                <td>{USDollar.format(item.quantity * item.productSize.product.price)}</td>
                 <td>
                   <Checkbox onChange={(e) => {onCheckboxChange(e, item.id)}} />
                 </td>
