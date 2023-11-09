@@ -52,4 +52,7 @@ public class Product extends BaseEntity{
 //    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 //    private List<ProductSize> productSizes;
 
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<Rate> rates;
+
 }

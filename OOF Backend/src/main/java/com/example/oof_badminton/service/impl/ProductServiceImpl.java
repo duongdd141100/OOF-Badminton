@@ -36,6 +36,10 @@ public class ProductServiceImpl implements ProductService {
 //                p.setCarts(new ArrayList<>());
 //                return p;
 //            }).collect(Collectors.toList());
+            x.getRates().stream().map(r -> {
+                r.setProduct(null);
+                return r;
+            }).toList();
             return x;
         }).get();
     }
