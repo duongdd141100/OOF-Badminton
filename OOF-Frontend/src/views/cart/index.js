@@ -83,6 +83,7 @@ export const Cart = (props) => {
       <div className='cart-body'>
         <table>
           <tr>
+            <th></th>
             <th>Tên sản phẩm</th>
             <th>Giá sản phẩm</th>
             <th>Số lượng</th>
@@ -92,6 +93,7 @@ export const Cart = (props) => {
           {cart.map(item => {
             return (
               <tr key={item.id}>
+                <td><img style={{width: 'auto', height: '3rem'}} src={`${BASE_URL}${item.productSize.product.path}`}/></td>
                 <td>{item.productSize.product.name}</td>
                 <td>{USDollar.format(item.productSize.product.price)}</td>
                 <td>{item.quantity}</td>
