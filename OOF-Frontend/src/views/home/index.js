@@ -101,7 +101,7 @@ export const Home = (props) => {
           {newProducts.length && newProducts.map(item => {
             return (<SwiperSlide>
               <div className='swiper-slide-image' onClick={() => {navigate(`/productDetail/${item.id}`, {state: {id: item.id}})}} >
-                <div className='home-product-image'><img  src={`${BASE_URL}${item.imagePath}`} width='auto' height='100%' /></div>
+                <div className='home-product-image'><img  src={`${BASE_URL}${item.imagePath}`} /></div>
                 <div className='home-product-name' style={{ display: 'flex', justifyContent: 'center' }}>{item.productName}</div>
                 <div className='product-price' style={{ display: 'flex', justifyContent: 'center', color: 'rgb(214, 81, 123)' }}>{USDollar.format(item.price)}</div>
               </div>

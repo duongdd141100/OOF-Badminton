@@ -89,7 +89,7 @@ export const Product = (props) => {
                 {item.map(element => {
                     return (
                     <div className='product-card' onClick={() => {handleProductClick(element.id)}}>
-                      <div className='home-product-image'><img className='product-image' src={`${BASE_URL}${element.imagePath}`} width='auto' height='80%' /></div>
+                      <div className='home-product-image'><img className='product-image' src={`${BASE_URL}${element.imagePath}`} style={{width: 'auto', height: '100%', maxWidth: '100%'}} /></div>
                       <div className='product-name' style={{ display: 'flex', justifyContent: 'center' }}>{element.productName}</div>
                       <div className='product-price' style={{ display: 'flex', justifyContent: 'center', color: 'rgb(214, 81, 123)' }}>{USDollar.format(element.price)}</div>
                     </div>
