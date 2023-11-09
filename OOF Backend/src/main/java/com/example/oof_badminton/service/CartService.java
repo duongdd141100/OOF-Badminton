@@ -10,5 +10,5 @@ public interface CartService {
 
     List<Cart> getCart(User user);
 
-    void delete(User user, Float productSizeId);
+    void delete(List<Float> cartIds);
 }

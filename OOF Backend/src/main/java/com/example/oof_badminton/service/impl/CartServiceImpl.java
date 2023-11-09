@@ -54,7 +54,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public void delete(User user, Float cartId) {
-        cartRepo.deleteById(cartId);
+    public void delete(List<Float> cartId) {
+        cartRepo.deleteAllById(cartId);
     }
 }
