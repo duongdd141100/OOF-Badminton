@@ -23,6 +23,8 @@ public class RequestMappingConstant {
     public static final String FIND_ALL_CATEGORY_API = "/api/categories";
     public static final String FIND_ALL_BANNER_API = "/api/banners";
 
+    public static final String FIND_ALL_SUPPLIER_API = "/api/suppliers";
+
     public static final List<String> FREE_API = Arrays.asList(
             SIGN_IN_API,
             SIGN_UP_API,
@@ -31,6 +33,7 @@ public class RequestMappingConstant {
             PRODUCT_DETAIL_API,
             IMAGE_API,
             FIND_ALL_CATEGORY_API,
-            FIND_ALL_BANNER_API);
+            FIND_ALL_BANNER_API,
+            FIND_ALL_SUPPLIER_API);
 
 }

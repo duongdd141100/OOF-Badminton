@@ -40,7 +40,8 @@ public class SecurityConfig {
                                     RequestMappingConstant.PRODUCT_DETAIL_API,
                                     RequestMappingConstant.IMAGE_API,
                                     RequestMappingConstant.FIND_ALL_BANNER_API,
-                                    RequestMappingConstant.FIND_ALL_CATEGORY_API).permitAll()
+                                    RequestMappingConstant.FIND_ALL_CATEGORY_API,
+                                    RequestMappingConstant.FIND_ALL_SUPPLIER_API).permitAll()
                             .anyRequest().authenticated();
                 });
         return http.build();
