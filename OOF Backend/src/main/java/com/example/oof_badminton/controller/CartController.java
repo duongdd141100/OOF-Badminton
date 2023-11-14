@@ -44,7 +44,7 @@ public class CartController {
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<String> cart(@AuthenticationPrincipal User user, @RequestBody List<Float> cartIds) {
+    public ResponseEntity<String> cart(@RequestBody List<Float> cartIds) {
         try {
             cartService.delete(cartIds);
             return ResponseEntity.ok(ResponseCodeEnum.OK.getMessage());

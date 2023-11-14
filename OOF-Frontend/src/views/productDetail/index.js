@@ -93,6 +93,11 @@ export const ProductDetail = (props) => {
       const code = data.status
       if (code == 200) loadProductDetai()
     }).catch(e => {
+      if (e.response.status == 401) {
+        window.alert('Vui lòng đăng nhập')
+        navigate('/login')
+        return;
+      }
       window.alert('Bình luận lỗi')
     })
   }
