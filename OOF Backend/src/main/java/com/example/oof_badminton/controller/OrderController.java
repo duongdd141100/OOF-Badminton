@@ -2,7 +2,6 @@ package com.example.oof_badminton.controller;
 
 import com.example.oof_badminton.common.BaseResponse;
 import com.example.oof_badminton.common.ResponseCodeEnum;
-import com.example.oof_badminton.dto.OrderDto;
 import com.example.oof_badminton.dto.OrderWithOrderProductDto;
 import com.example.oof_badminton.entity.Order;
 import com.example.oof_badminton.entity.User;
