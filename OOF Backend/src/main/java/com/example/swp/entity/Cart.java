@@ -12,8 +12,8 @@ public class Cart extends BaseEntity {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "product_size_id")
-    private ProductSize productSize;
+    @JoinColumn(name = "product_stocktaking_id")
+    private ProductStocktaking productStocktaking;
 
     @Column(name = "quantity")
     private Integer quantity;

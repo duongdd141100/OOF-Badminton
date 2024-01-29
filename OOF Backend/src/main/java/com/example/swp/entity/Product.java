@@ -50,7 +50,7 @@ public class Product extends BaseEntity{
     private Supplier supplier;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    private List<ProductSize> productSizes;
+    private List<ProductStocktaking> productStocktaking;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<Comment> comments;

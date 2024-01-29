@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "product_size")
-public class ProductSize extends BaseEntity {
+@Table(name = "product_stocktaking")
+public class ProductStocktaking extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -16,10 +16,12 @@ public class ProductSize extends BaseEntity {
     @JoinColumn(name = "size_id")
     private Size size;
 
+    @ManyToOne
+    @JoinColumn(name = "color_id")
+    private Color color;
+
     @Column(name = "stock_quantity")
     private Integer stockQuantity;
 
-//    @OneToMany(mappedBy = "productSize", fetch = FetchType.LAZY)
-//    private List<Cart> carts;
 
 }

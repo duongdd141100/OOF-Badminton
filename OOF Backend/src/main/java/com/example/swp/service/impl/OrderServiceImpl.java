@@ -52,12 +52,12 @@ public class OrderServiceImpl implements OrderService {
         // Create Order product
         carts.stream().forEach(x -> {
             OrderProduct orderProduct = new OrderProduct();
-            orderProduct.setProductSize(new ProductSize());
-            orderProduct.setProductSize(x.getProductSize());
+            orderProduct.setProductStocktaking(new ProductStocktaking());
+            orderProduct.setProductStocktaking(x.getProductStocktaking());
             orderProduct.setQuantity(x.getQuantity());
             orderProduct.setOrder(order);
-            orderProduct.getProductSize().getProduct().setComments(null);
-            orderProduct.setUnitPrice(x.getProductSize().getProduct().getPrice());
+            orderProduct.getProductStocktaking().getProduct().setComments(null);
+            orderProduct.setUnitPrice(x.getProductStocktaking().getProduct().getPrice());
             order.getOrderProducts().add(orderProduct);
         });
 

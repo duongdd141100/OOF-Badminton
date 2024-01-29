@@ -24,7 +24,7 @@ public class OrderProduct extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "product_size_id")
-    private ProductSize productSize;
+    private ProductStocktaking productStocktaking;
 
     @Column(name = "unit_price")
     private Float unitPrice;

@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepo.findById(productId).map(x -> {
 //            x.getCategory().setProducts(new ArrayList<>());
 //            x.getSupplier().setProducts(new ArrayList<>());
-            x.getProductSizes().stream().map(p -> {
+            x.getProductStocktaking().stream().map(p -> {
                 p.setProduct(null);
                 return p;
             }).collect(Collectors.toList());

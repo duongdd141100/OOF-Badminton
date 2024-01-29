@@ -11,9 +11,9 @@ import java.util.List;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Float> {
-    @Query("select c from Cart c where c.user.id = :userId and c.productSize.id = :productSizeId")
-    Cart findByUserIdAndProductSizeId(@Param("userId") Float userId, @Param("productSizeId") Float productSizeId);
+    @Query("select c from Cart c where c.user.id = :userId and c.productStocktaking.id = :productSizeId")
+    Cart findByUserIdAndProductStocktakingId(@Param("userId") Float userId, @Param("productSizeId") Float productSizeId);
 
     List<Cart> findByUser(User user);
-    void deleteByUserAndProductSize_Id(User user, Float productSizeId);
+    void deleteByUserAndProductStocktaking_id(User user, Float productSizeId);
 ;}
