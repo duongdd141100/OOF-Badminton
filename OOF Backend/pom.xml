@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>OOF-Badminton</artifactId>
+    <artifactId>SWP</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>OOF-Badminton</name>
     <description>OOF Badminton</description>
